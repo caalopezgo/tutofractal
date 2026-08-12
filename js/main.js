@@ -1,46 +1,4 @@
 (() => {
-  const THEME_KEY = "site-theme";
-  const THEMES = [
-    { id: "swiss", label: "Swiss" },
-    { id: "classic", label: "Classic" },
-    { id: "editorial", label: "Editorial" },
-  ];
-
-  const applyTheme = (theme) => {
-    const next = THEMES.some((item) => item.id === theme) ? theme : "swiss";
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem(THEME_KEY, next);
-    document.querySelectorAll("[data-theme-option]").forEach((btn) => {
-      btn.classList.toggle("is-active", btn.dataset.themeOption === next);
-    });
-  };
-
-  const current = localStorage.getItem(THEME_KEY) || "swiss";
-  applyTheme(current);
-
-  const footer = document.querySelector(".nav__footer");
-  if (footer) {
-    const switcher = document.createElement("div");
-    switcher.className = "theme-switch";
-    switcher.innerHTML = `
-      <div class="theme-switch__label">Style</div>
-      <div class="theme-switch__options" role="group" aria-label="Site style">
-        ${THEMES.map(
-          (theme) =>
-            `<button type="button" class="theme-switch__btn" data-theme-option="${theme.id}">${theme.label}</button>`
-        ).join("")}
-      </div>
-    `;
-    footer.appendChild(switcher);
-    applyTheme(current);
-
-    switcher.addEventListener("click", (event) => {
-      const btn = event.target.closest("[data-theme-option]");
-      if (!btn) return;
-      applyTheme(btn.dataset.themeOption);
-    });
-  }
-
   const nav = document.querySelector("[data-nav]");
   const toggle = document.querySelector("[data-nav-toggle]");
   const backdrop = document.querySelector("[data-nav-backdrop]");

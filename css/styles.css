@@ -1,33 +1,5 @@
-/* Carlos — personal site */
-:root,
-[data-theme="classic"] {
-  --ink: #1c2329;
-  --ink-soft: #3d4a55;
-  --mist: #eef2f5;
-  --paper: #f8fafb;
-  --line: #d4dde5;
-  --accent: #2f4f8f;
-  --accent-deep: #1f3568;
-  --accent-soft: #dce5f5;
-  --warm: #b86b3c;
-  --shadow: 0 18px 40px rgba(28, 35, 41, 0.08);
-  --radius: 14px;
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-body: "Figtree", "Segoe UI", sans-serif;
-  --nav-width: 240px;
-  --max: 920px;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --bg-image:
-    radial-gradient(1200px 600px at 10% -10%, #dce4f0 0%, transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, #e7edf4 0%, transparent 50%),
-    linear-gradient(180deg, var(--mist) 0%, var(--paper) 45%, #f3f6f8 100%);
-  --display-weight: 400;
-  --display-tracking: -0.03em;
-  --link-radius: 10px;
-}
-
-/* Swiss / neo-grotesque — Helvetica-adjacent clarity */
-[data-theme="swiss"] {
+/* Carlos — personal site (Swiss) */
+:root {
   --ink: #111111;
   --ink-soft: #5a5a5a;
   --mist: #f4f4f4;
@@ -41,37 +13,12 @@
   --radius: 2px;
   --font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
   --font-body: "Space Grotesk", Helvetica, Arial, sans-serif;
-  --bg-image:
-    linear-gradient(rgba(17, 17, 17, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
-    linear-gradient(180deg, #f7f7f7, #fafafa);
-  --bg-size: 48px 48px, 48px 48px, auto;
+  --nav-width: 240px;
+  --max: 920px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --display-weight: 500;
   --display-tracking: -0.04em;
   --link-radius: 2px;
-}
-
-/* Editorial academic */
-[data-theme="editorial"] {
-  --ink: #1a1c1f;
-  --ink-soft: #5c6570;
-  --mist: #eef1f4;
-  --paper: #f7f8fa;
-  --line: #d7dde5;
-  --accent: #243447;
-  --accent-deep: #121820;
-  --accent-soft: #e4e9ef;
-  --warm: #a56b3c;
-  --shadow: 0 16px 36px rgba(26, 28, 31, 0.07);
-  --radius: 8px;
-  --font-display: "Newsreader", "Times New Roman", serif;
-  --font-body: "Public Sans", "Segoe UI", sans-serif;
-  --bg-image:
-    radial-gradient(900px 500px at 0% 0%, #e7ebf0 0%, transparent 55%),
-    linear-gradient(180deg, #eef1f4, #f7f8fa 50%, #f3f5f7);
-  --display-weight: 400;
-  --display-tracking: -0.02em;
-  --link-radius: 8px;
 }
 
 *,
@@ -89,12 +36,16 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--ink);
-  background-image: var(--bg-image);
-  background-size: var(--bg-size, auto);
-  background-attachment: fixed;
+  background-color: #f4f2ed;
+  background-image:
+    linear-gradient(rgba(250, 250, 250, 0.78), rgba(250, 250, 250, 0.86)),
+    url("../assets/pollock-drip.svg");
+  background-size: auto, cover;
+  background-position: center, center;
+  background-attachment: fixed, fixed;
+  background-repeat: no-repeat;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-  transition: background 280ms var(--ease), color 280ms var(--ease);
 }
 
 img {
@@ -124,7 +75,7 @@ button {
   height: 100vh;
   padding: 2rem 1.4rem 1.5rem;
   border-right: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-  background: color-mix(in srgb, var(--paper) 72%, transparent);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -202,46 +153,6 @@ button {
 
 .nav__footer a:hover {
   color: var(--accent);
-}
-
-.theme-switch {
-  display: grid;
-  gap: 0.45rem;
-  margin-top: 0.85rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--line);
-}
-
-.theme-switch__label {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-.theme-switch__options {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.35rem;
-}
-
-.theme-switch__btn {
-  border: 1px solid var(--line);
-  background: color-mix(in srgb, white 70%, transparent);
-  color: var(--ink-soft);
-  border-radius: var(--link-radius);
-  padding: 0.4rem 0.2rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
-}
-
-.theme-switch__btn:hover,
-.theme-switch__btn.is-active {
-  color: var(--accent-deep);
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
-  background: var(--accent-soft);
 }
 
 .topbar {
@@ -354,7 +265,7 @@ h2 {
 
 .btn--ghost {
   border-color: var(--line);
-  background: color-mix(in srgb, white 55%, transparent);
+  background: color-mix(in srgb, white 70%, transparent);
 }
 
 .btn--ghost:hover {
@@ -376,7 +287,7 @@ h2 {
   padding: 1.15rem 1.2rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: color-mix(in srgb, white 70%, transparent);
+  background: color-mix(in srgb, white 82%, transparent);
   transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
@@ -428,7 +339,6 @@ h2 {
   font-size: 0.92rem;
 }
 
-/* Content blocks — compact, not card-heavy */
 .stack {
   display: grid;
   gap: 1.1rem;
@@ -493,7 +403,6 @@ h2 {
   color: var(--accent-deep);
 }
 
-/* Gallery */
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -502,7 +411,7 @@ h2 {
 
 .gallery__cell {
   aspect-ratio: 1;
-  border-radius: calc(var(--radius) - 2px);
+  border-radius: calc(var(--radius) + 2px);
   border: 1px solid var(--line);
   background:
     linear-gradient(145deg, color-mix(in srgb, var(--accent-soft) 70%, white), #e8eef3 55%, #dfe7ee);
@@ -535,7 +444,7 @@ h2 {
   margin-top: 1.5rem;
   padding: 0.9rem 1rem;
   border-left: 3px solid var(--accent);
-  background: color-mix(in srgb, white 65%, transparent);
+  background: color-mix(in srgb, white 75%, transparent);
   color: var(--ink-soft);
   font-size: 0.92rem;
 }
@@ -546,10 +455,10 @@ h2 {
   border-radius: var(--radius);
   border: 1px solid var(--line);
   background:
-    linear-gradient(120deg, transparent 0%, color-mix(in srgb, white 30%, transparent) 40%, transparent 70%),
-    radial-gradient(circle at 20% 40%, #9eb0d4 0%, transparent 35%),
-    radial-gradient(circle at 75% 30%, #b7c7d8 0%, transparent 40%),
-    linear-gradient(160deg, #d8e0ec, #e8eef4 55%, #d5dde6);
+    linear-gradient(120deg, rgba(255, 255, 255, 0.35), transparent 55%),
+    url("../assets/pollock-drip.svg");
+  background-size: cover;
+  background-position: center;
   position: relative;
   overflow: hidden;
   animation: wash 8s ease-in-out infinite alternate;
@@ -560,7 +469,7 @@ h2 {
     filter: saturate(1);
   }
   to {
-    filter: saturate(1.15) brightness(1.03);
+    filter: saturate(1.12) contrast(1.04);
   }
 }
 
@@ -573,7 +482,6 @@ h2 {
   color: color-mix(in srgb, var(--ink) 55%, transparent);
 }
 
-/* Research focus strip */
 .focus {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -584,7 +492,7 @@ h2 {
 .focus__item {
   padding: 0.95rem 1rem;
   border-top: 2px solid var(--accent);
-  background: color-mix(in srgb, white 60%, transparent);
+  background: color-mix(in srgb, white 75%, transparent);
 }
 
 .focus__item p {
@@ -593,7 +501,6 @@ h2 {
   font-size: 0.9rem;
 }
 
-/* Mobile */
 @media (max-width: 860px) {
   .shell {
     grid-template-columns: 1fr;
@@ -608,7 +515,7 @@ h2 {
     z-index: 40;
     padding: 0.85rem 1rem;
     border-bottom: 1px solid var(--line);
-    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
     backdrop-filter: blur(12px);
   }
 

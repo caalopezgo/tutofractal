@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <!-- Original drip composition inspired by abstract expressionism  not a reproduction of any Pollock work -->
+  <rect width="1600" height="1000" fill="#f3f1ec"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 120 C180 40 260 220 410 160 S680 40 820 180 1100 320 1280 210 1480 80 1580 150" stroke="#111" stroke-width="3.2" opacity="0.55"/>
+    <path d="M20 340 C160 280 300 420 460 360 S780 250 940 390 1200 520 1410 430 1550 310 1590 380" stroke="#1a1a1a" stroke-width="2.4" opacity="0.45"/>
+    <path d="M80 620 C220 540 340 710 520 650 S820 520 980 680 1240 820 1420 730 1540 600 1580 670" stroke="#0d0d0d" stroke-width="4" opacity="0.4"/>
+    <path d="M60 860 C240 780 380 940 560 880 S860 760 1040 900 1300 980 1500 900" stroke="#222" stroke-width="2.1" opacity="0.35"/>
+    <path d="M120 200 C200 480 180 620 260 900" stroke="#111" stroke-width="1.8" opacity="0.35"/>
+    <path d="M480 40 C520 260 450 480 510 980" stroke="#1c1c1c" stroke-width="2.6" opacity="0.3"/>
+    <path d="M860 20 C820 300 910 560 870 990" stroke="#111" stroke-width="1.5" opacity="0.28"/>
+    <path d="M1240 60 C1300 280 1180 520 1260 960" stroke="#181818" stroke-width="3" opacity="0.32"/>
+    <path d="M200 150 C320 120 360 260 480 210 S700 140 780 260" stroke="#8a2f1f" stroke-width="2.2" opacity="0.42"/>
+    <path d="M900 420 C1040 360 1120 520 1280 470 S1480 390 1560 500" stroke="#b4531e" stroke-width="2.8" opacity="0.38"/>
+    <path d="M100 500 C240 470 300 610 440 560 S680 480 760 620" stroke="#2f4a6e" stroke-width="2" opacity="0.34"/>
+    <path d="M980 700 C1120 640 1220 800 1380 740" stroke="#8a2f1f" stroke-width="1.7" opacity="0.3"/>
+    <path d="M340 300 C380 420 300 500 360 700" stroke="#b4531e" stroke-width="1.4" opacity="0.28"/>
+    <path d="M1100 180 C1160 340 1080 480 1140 720" stroke="#2f4a6e" stroke-width="1.6" opacity="0.26"/>
+  </g>
+  <g opacity="0.55">
+    <circle cx="180" cy="210" r="3.5" fill="#111"/>
+    <circle cx="420" cy="380" r="2.2" fill="#8a2f1f"/>
+    <circle cx="610" cy="160" r="4.5" fill="#111"/>
+    <circle cx="740" cy="520" r="2.8" fill="#2f4a6e"/>
+    <circle cx="980" cy="290" r="3.1" fill="#111"/>
+    <circle cx="1180" cy="610" r="2.4" fill="#b4531e"/>
+    <circle cx="1320" cy="240" r="5" fill="#111"/>
+    <circle cx="250" cy="720" r="2" fill="#111"/>
+    <circle cx="540" cy="840" r="3.3" fill="#8a2f1f"/>
+    <circle cx="890" cy="780" r="2.1" fill="#111"/>
+    <circle cx="1450" cy="520" r="2.7" fill="#2f4a6e"/>
+    <circle cx="1020" cy="120" r="1.8" fill="#b4531e"/>
+    <circle cx="70" cy="450" r="2.5" fill="#111"/>
+    <circle cx="1510" cy="820" r="3.6" fill="#111"/>
+  </g>
+  <g fill="none" stroke="#111" stroke-width="1.1" opacity="0.22">
+    <path d="M300 90 C310 140 290 170 305 230"/>
+    <path d="M700 400 C715 450 690 500 710 560"/>
+    <path d="M1400 300 C1415 360 1390 410 1410 480"/>
+    <path d="M160 800 C175 850 155 900 170 960"/>
+  </g>
+</svg>
