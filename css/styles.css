@@ -13,7 +13,7 @@
   --radius: 2px;
   --font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
   --font-body: "Space Grotesk", Helvetica, Arial, sans-serif;
-  --nav-width: 240px;
+  --nav-width: 268px;
   --max: 920px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --display-weight: 500;
@@ -90,10 +90,30 @@ button {
 
 .brand__name {
   font-family: var(--font-display);
-  font-size: 1.85rem;
+  font-size: 1.35rem;
   font-weight: var(--display-weight);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.currently {
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 0.9rem;
+  border-left: 2px solid var(--accent);
+  background: color-mix(in srgb, white 72%, transparent);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  max-width: 42rem;
+}
+
+.empty-state {
+  padding: 1.25rem 0;
+  color: var(--ink-soft);
+  max-width: 40rem;
+}
+
+.empty-state p {
+  margin: 0 0 0.75rem;
 }
 
 .brand__tag {

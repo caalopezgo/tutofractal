@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Carlos — Projects</title>
-    <meta name="description" content="Software projects by Carlos: Atlas, math tools, ML apps, and research software." />
+    <title>Projects — Carlos López González</title>
+    <meta
+      name="description"
+      content="Selected systems by Carlos López González: Atlas, on-device computer vision, probability modeling, TDA and fractal tools."
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +18,7 @@
   </head>
   <body>
     <header class="topbar">
-      <a class="topbar__brand" href="index.html">Carlos</a>
+      <a class="topbar__brand" href="index.html">Carlos López González</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
         Menu
       </button>
@@ -25,8 +28,8 @@
     <div class="shell">
       <aside class="nav" id="site-nav" data-nav>
         <a class="brand" href="index.html">
-          <span class="brand__name">Carlos</span>
-          <span class="brand__tag">Math · software · art</span>
+          <span class="brand__name">Carlos López González</span>
+          <span class="brand__tag">Applied math · ML · systems</span>
         </a>
         <ul class="nav__list">
           <li>
@@ -39,7 +42,7 @@
             <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">03</span></a>
           </li>
           <li>
-            <a class="nav__link" href="publications.html"><span>Publications</span><span class="nav__index">04</span></a>
+            <a class="nav__link" href="publications.html"><span>Writing &amp; talks</span><span class="nav__index">04</span></a>
           </li>
           <li>
             <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">05</span></a>
@@ -49,34 +52,41 @@
           </li>
         </ul>
         <div class="nav__footer">
-          <a href="mailto:hello@example.com">hello@example.com</a>
+          <!-- TODO: add preferred personal email when confirmed -->
+          <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="assets/cv.pdf">CV (PDF)</a>
         </div>
       </aside>
 
       <main class="main">
         <section class="panel">
           <p class="kicker">Projects</p>
-          <h1>Software I build.</h1>
+          <h1>Selected systems.</h1>
           <p class="lede">
-            Academic products, interactive math, and applied ML. Links below go to live demos,
-            public repos, or project briefs on this site.
+            Shipped product, on-device ML, and probability tooling — with public theory-to-code work in
+            TDA, fractals, and interactive math.
           </p>
 
           <div class="stack">
             <article class="entry">
-              <div class="entry__meta">Active</div>
+              <div class="entry__meta">Flagship</div>
               <div>
                 <h2 class="entry__title">Atlas</h2>
                 <p class="entry__text">
-                  Academic intelligence layer for instructors and departments: prepare lessons,
-                  grade with rubrics, and surface at-risk signals. AI suggests; humans decide.
-                  Instructors can start from uploaded materials; LMS connect is optional.
+                  <strong>Problem:</strong> instructors need faster prep, grading support, and early risk
+                  signals without surrendering judgment to automation.<br />
+                  <strong>Approach:</strong> academic intelligence layer where AI drafts lessons and
+                  assessment feedback; humans review and approve. Start from uploaded course materials;
+                  LMS connect is an upgrade path.<br />
+                  <strong>Outcome:</strong> live instructor pilot with private workspaces, materials,
+                  Prepare, and Assessment Intelligence.
                 </p>
                 <div class="pill-row">
-                  <span class="pill">EdTech</span>
-                  <span class="pill">Instructor pilot</span>
+                  <span class="pill">React</span>
                   <span class="pill">Supabase</span>
+                  <span class="pill">EdTech</span>
+                  <span class="pill">LLM workflows</span>
                 </div>
                 <div class="entry__links">
                   <a href="https://atlas-academic.vercel.app" target="_blank" rel="noreferrer">Live pilot</a>
@@ -86,111 +96,93 @@
             </article>
 
             <article class="entry">
-              <div class="entry__meta">Public</div>
-              <div>
-                <h2 class="entry__title">Interactive math samples</h2>
-                <p class="entry__text">
-                  Standalone browser experiences for teaching math concepts visually — explore,
-                  manipulate, and discover relationships in real time.
-                </p>
-                <div class="pill-row">
-                  <span class="pill">Math education</span>
-                  <span class="pill">HTML / JS</span>
-                </div>
-                <div class="entry__links">
-                  <a href="https://github.com/caalopezgo/math-interactive-sample" target="_blank" rel="noreferrer">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry">
-              <div class="entry__meta">Public</div>
-              <div>
-                <h2 class="entry__title">Fractal Geometry</h2>
-                <p class="entry__text">
-                  Interactive visualization of Mandelbrot and Julia sets — exploration tooling for
-                  complex dynamics and fractal geometry.
-                </p>
-                <div class="pill-row">
-                  <span class="pill">Mathematics</span>
-                  <span class="pill">Visualization</span>
-                </div>
-                <div class="entry__links">
-                  <a href="https://github.com/caalopezgo/Fractal-Geometry" target="_blank" rel="noreferrer">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry">
-              <div class="entry__meta">Public</div>
-              <div>
-                <h2 class="entry__title">Topological Data Analysis</h2>
-                <p class="entry__text">
-                  Work and experiments in topological data analysis (TDA).
-                </p>
-                <div class="pill-row">
-                  <span class="pill">TDA</span>
-                  <span class="pill">Research software</span>
-                </div>
-                <div class="entry__links">
-                  <a href="https://github.com/caalopezgo/Topological-Data-Analysis" target="_blank" rel="noreferrer">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry">
-              <div class="entry__meta">Local</div>
-              <div>
-                <h2 class="entry__title">Learning Analytics MVP</h2>
-                <p class="entry__text">
-                  AI-supported learning platform with teacher/student roles, tutoring modes, and
-                  analytics dashboards (React + Node + OpenAI). Related work lives under
-                  <code>learningAnalytics/</code> on this machine.
-                </p>
-                <div class="pill-row">
-                  <span class="pill">Learning analytics</span>
-                  <span class="pill">LLM</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="entry">
-              <div class="entry__meta">Local</div>
+              <div class="entry__meta">Computer vision</div>
               <div>
                 <h2 class="entry__title">Pineapple Counter</h2>
                 <p class="entry__text">
-                  React Native app (iOS/Android) that uses on-device ML to detect and count pineapples
-                  on a conveyor belt in real time.
+                  <strong>Problem:</strong> count produce on a moving conveyor without cloud-dependent
+                  vision infrastructure.<br />
+                  <strong>Approach:</strong> React Native app with on-device object detection (TensorFlow
+                  Lite), virtual count line, duplicate suppression, and local history.<br />
+                  <strong>Outcome:</strong> iOS/Android prototype for real-time counting; demo available
+                  on request (repo not public yet).
                 </p>
                 <div class="pill-row">
                   <span class="pill">React Native</span>
-                  <span class="pill">Computer vision</span>
+                  <span class="pill">TFLite</span>
+                  <span class="pill">On-device ML</span>
+                  <span class="pill">CV</span>
+                </div>
+                <div class="entry__links">
+                  <a href="docs/pineapple.html">Project brief</a>
                 </div>
               </div>
             </article>
 
             <article class="entry">
-              <div class="entry__meta">Local</div>
+              <div class="entry__meta">Applied probability</div>
               <div>
                 <h2 class="entry__title">PitchPrice</h2>
                 <p class="entry__text">
-                  Soccer probability diagnostics in Python/Streamlit: Dixon–Coles modeling,
-                  temporal validation, calibration, and model-vs-market comparison. Bundled demo
-                  data is synthetic by design.
+                  <strong>Problem:</strong> soccer forecasts are easy to present as picks and hard to
+                  evaluate honestly.<br />
+                  <strong>Approach:</strong> Dixon–Coles modeling, chronological validation,
+                  calibration / scoring rules, and model-vs-market (no-vig) comparison in a Streamlit
+                  product surface.<br />
+                  <strong>Outcome:</strong> offline-reproducible diagnostics app; bundled demo data is
+                  synthetic by design.
                 </p>
                 <div class="pill-row">
                   <span class="pill">Python</span>
-                  <span class="pill">Sports analytics</span>
+                  <span class="pill">Streamlit</span>
+                  <span class="pill">scikit-learn</span>
+                  <span class="pill">Calibration</span>
+                </div>
+                <div class="entry__links">
+                  <a href="docs/pitchprice.html">Project brief</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Theory → tools</div>
+              <div>
+                <h2 class="entry__title">TDA · Fractals · Interactive math</h2>
+                <p class="entry__text">
+                  Public repositories that make geometric and topological ideas computable and teachable:
+                  topological data analysis experiments, Mandelbrot/Julia exploration, and standalone
+                  interactive math experiences for concept learning.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">TDA</span>
+                  <span class="pill">Complex dynamics</span>
+                  <span class="pill">Math education</span>
+                </div>
+                <div class="entry__links">
+                  <a href="https://github.com/caalopezgo/Topological-Data-Analysis" target="_blank" rel="noreferrer">TDA</a>
+                  <a href="https://github.com/caalopezgo/Fractal-Geometry" target="_blank" rel="noreferrer">Fractal Geometry</a>
+                  <a href="https://github.com/caalopezgo/math-interactive-sample" target="_blank" rel="noreferrer">Interactive math</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Precursor</div>
+              <div>
+                <h2 class="entry__title">Learning Analytics MVP</h2>
+                <p class="entry__text">
+                  Earlier full-stack experiment (React + Node + OpenAI) for role-based tutoring modes and
+                  analytics dashboards. Design lessons and AI workflow patterns carried forward into
+                  Atlas.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">React</span>
+                  <span class="pill">Node</span>
+                  <span class="pill">OpenAI</span>
                 </div>
               </div>
             </article>
           </div>
-
-          <p class="note">
-            “Local” means the code is on this computer but not published as a public repo yet. If you
-            want public GitHub links for Pineapple, PitchPrice, or Learning Analytics, we can publish
-            them next.
-          </p>
         </section>
       </main>
     </div>
