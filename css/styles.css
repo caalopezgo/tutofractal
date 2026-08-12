@@ -1,5 +1,6 @@
 /* Carlos — personal site */
-:root {
+:root,
+[data-theme="classic"] {
   --ink: #1c2329;
   --ink-soft: #3d4a55;
   --mist: #eef2f5;
@@ -16,6 +17,61 @@
   --nav-width: 240px;
   --max: 920px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --bg-image:
+    radial-gradient(1200px 600px at 10% -10%, #dce4f0 0%, transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, #e7edf4 0%, transparent 50%),
+    linear-gradient(180deg, var(--mist) 0%, var(--paper) 45%, #f3f6f8 100%);
+  --display-weight: 400;
+  --display-tracking: -0.03em;
+  --link-radius: 10px;
+}
+
+/* Swiss / neo-grotesque — Helvetica-adjacent clarity */
+[data-theme="swiss"] {
+  --ink: #111111;
+  --ink-soft: #5a5a5a;
+  --mist: #f4f4f4;
+  --paper: #fafafa;
+  --line: #e2e2e2;
+  --accent: #111111;
+  --accent-deep: #000000;
+  --accent-soft: #ececec;
+  --warm: #c45c26;
+  --shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+  --radius: 2px;
+  --font-display: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --font-body: "Space Grotesk", Helvetica, Arial, sans-serif;
+  --bg-image:
+    linear-gradient(rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+    linear-gradient(180deg, #f7f7f7, #fafafa);
+  --bg-size: 48px 48px, 48px 48px, auto;
+  --display-weight: 500;
+  --display-tracking: -0.04em;
+  --link-radius: 2px;
+}
+
+/* Editorial academic */
+[data-theme="editorial"] {
+  --ink: #1a1c1f;
+  --ink-soft: #5c6570;
+  --mist: #eef1f4;
+  --paper: #f7f8fa;
+  --line: #d7dde5;
+  --accent: #243447;
+  --accent-deep: #121820;
+  --accent-soft: #e4e9ef;
+  --warm: #a56b3c;
+  --shadow: 0 16px 36px rgba(26, 28, 31, 0.07);
+  --radius: 8px;
+  --font-display: "Newsreader", "Times New Roman", serif;
+  --font-body: "Public Sans", "Segoe UI", sans-serif;
+  --bg-image:
+    radial-gradient(900px 500px at 0% 0%, #e7ebf0 0%, transparent 55%),
+    linear-gradient(180deg, #eef1f4, #f7f8fa 50%, #f3f5f7);
+  --display-weight: 400;
+  --display-tracking: -0.02em;
+  --link-radius: 8px;
 }
 
 *,
@@ -33,13 +89,12 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   color: var(--ink);
-  background:
-    radial-gradient(1200px 600px at 10% -10%, #dce4f0 0%, transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, #e7edf4 0%, transparent 50%),
-    linear-gradient(180deg, var(--mist) 0%, var(--paper) 45%, #f3f6f8 100%);
+  background-image: var(--bg-image);
+  background-size: var(--bg-size, auto);
   background-attachment: fixed;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  transition: background 280ms var(--ease), color 280ms var(--ease);
 }
 
 img {
@@ -85,7 +140,7 @@ button {
 .brand__name {
   font-family: var(--font-display);
   font-size: 1.85rem;
-  font-weight: 400;
+  font-weight: var(--display-weight);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
@@ -110,7 +165,7 @@ button {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.7rem 0.85rem;
-  border-radius: 10px;
+  border-radius: var(--link-radius);
   color: var(--ink-soft);
   transition: background 220ms var(--ease), color 220ms var(--ease), transform 220ms var(--ease);
 }
@@ -147,6 +202,46 @@ button {
 
 .nav__footer a:hover {
   color: var(--accent);
+}
+
+.theme-switch {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
+.theme-switch__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.theme-switch__options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.theme-switch__btn {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, white 70%, transparent);
+  color: var(--ink-soft);
+  border-radius: var(--link-radius);
+  padding: 0.4rem 0.2rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+}
+
+.theme-switch__btn:hover,
+.theme-switch__btn.is-active {
+  color: var(--accent-deep);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  background: var(--accent-soft);
 }
 
 .topbar {
@@ -205,16 +300,16 @@ button {
 
 h1 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--display-weight);
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--display-tracking);
   margin: 0 0 0.85rem;
 }
 
 h2 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--display-weight);
   font-size: clamp(1.55rem, 3vw, 2rem);
   letter-spacing: -0.02em;
   margin: 0 0 0.5rem;
