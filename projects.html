@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Carlos — Projects</title>
-    <meta name="description" content="Software projects by Carlos, including Atlas." />
+    <meta name="description" content="Software projects by Carlos: Atlas, math tools, ML apps, and research software." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,65 +50,147 @@
         </ul>
         <div class="nav__footer">
           <a href="mailto:hello@example.com">hello@example.com</a>
-          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </aside>
 
       <main class="main">
         <section class="panel">
           <p class="kicker">Projects</p>
-          <h1>Software I build and use.</h1>
+          <h1>Software I build.</h1>
           <p class="lede">
-            Academic tools and practical experiments. Start with Atlas; add more projects here over
-            time.
+            Academic products, interactive math, and applied ML. Links below go to live demos,
+            public repos, or project briefs on this site.
           </p>
 
           <div class="stack">
             <article class="entry">
-              <div class="entry__meta">2024 — active</div>
+              <div class="entry__meta">Active</div>
               <div>
                 <h2 class="entry__title">Atlas</h2>
                 <p class="entry__text">
-                  Academic software for organizing and working with study and research materials.
-                  Built to be clear, stable, and useful day to day.
+                  Academic intelligence layer for instructors and departments: prepare lessons,
+                  grade with rubrics, and surface at-risk signals. AI suggests; humans decide.
+                  Instructors can start from uploaded materials; LMS connect is optional.
                 </p>
                 <div class="pill-row">
-                  <span class="pill">Academic</span>
-                  <span class="pill">Product</span>
+                  <span class="pill">EdTech</span>
+                  <span class="pill">Instructor pilot</span>
+                  <span class="pill">Supabase</span>
                 </div>
                 <div class="entry__links">
-                  <a href="#">Site / demo</a>
-                  <a href="#">Repository</a>
+                  <a href="https://atlas-academic.vercel.app" target="_blank" rel="noreferrer">Live pilot</a>
+                  <a href="docs/atlas.html">Project brief</a>
                 </div>
               </div>
             </article>
 
             <article class="entry">
-              <div class="entry__meta">In progress</div>
+              <div class="entry__meta">Public</div>
               <div>
-                <h2 class="entry__title">Research tooling</h2>
+                <h2 class="entry__title">Interactive math samples</h2>
                 <p class="entry__text">
-                  Small scripts and utilities for notes, bibliography, visualization, or mathematical
-                  workflows. Replace this block with your real repos.
+                  Standalone browser experiences for teaching math concepts visually — explore,
+                  manipulate, and discover relationships in real time.
                 </p>
                 <div class="pill-row">
-                  <span class="pill">Research ops</span>
-                  <span class="pill">Open source</span>
+                  <span class="pill">Math education</span>
+                  <span class="pill">HTML / JS</span>
+                </div>
+                <div class="entry__links">
+                  <a href="https://github.com/caalopezgo/math-interactive-sample" target="_blank" rel="noreferrer">GitHub</a>
                 </div>
               </div>
             </article>
 
             <article class="entry">
-              <div class="entry__meta">Archive</div>
+              <div class="entry__meta">Public</div>
               <div>
-                <h2 class="entry__title">Other projects</h2>
+                <h2 class="entry__title">Fractal Geometry</h2>
                 <p class="entry__text">
-                  Space for prototypes, experiments, or side software. Add a new entry for each
-                  relevant project.
+                  Interactive visualization of Mandelbrot and Julia sets — exploration tooling for
+                  complex dynamics and fractal geometry.
                 </p>
+                <div class="pill-row">
+                  <span class="pill">Mathematics</span>
+                  <span class="pill">Visualization</span>
+                </div>
+                <div class="entry__links">
+                  <a href="https://github.com/caalopezgo/Fractal-Geometry" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Public</div>
+              <div>
+                <h2 class="entry__title">Topological Data Analysis</h2>
+                <p class="entry__text">
+                  Work and experiments in topological data analysis (TDA).
+                </p>
+                <div class="pill-row">
+                  <span class="pill">TDA</span>
+                  <span class="pill">Research software</span>
+                </div>
+                <div class="entry__links">
+                  <a href="https://github.com/caalopezgo/Topological-Data-Analysis" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Local</div>
+              <div>
+                <h2 class="entry__title">Learning Analytics MVP</h2>
+                <p class="entry__text">
+                  AI-supported learning platform with teacher/student roles, tutoring modes, and
+                  analytics dashboards (React + Node + OpenAI). Related work lives under
+                  <code>learningAnalytics/</code> on this machine.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">Learning analytics</span>
+                  <span class="pill">LLM</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Local</div>
+              <div>
+                <h2 class="entry__title">Pineapple Counter</h2>
+                <p class="entry__text">
+                  React Native app (iOS/Android) that uses on-device ML to detect and count pineapples
+                  on a conveyor belt in real time.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">React Native</span>
+                  <span class="pill">Computer vision</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">Local</div>
+              <div>
+                <h2 class="entry__title">PitchPrice</h2>
+                <p class="entry__text">
+                  Soccer probability diagnostics in Python/Streamlit: Dixon–Coles modeling,
+                  temporal validation, calibration, and model-vs-market comparison. Bundled demo
+                  data is synthetic by design.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">Python</span>
+                  <span class="pill">Sports analytics</span>
+                </div>
               </div>
             </article>
           </div>
+
+          <p class="note">
+            “Local” means the code is on this computer but not published as a public repo yet. If you
+            want public GitHub links for Pineapple, PitchPrice, or Learning Analytics, we can publish
+            them next.
+          </p>
         </section>
       </main>
     </div>
