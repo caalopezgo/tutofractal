@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carlos — Home</title>
+    <meta
+      name="description"
+      content="Personal site for Carlos: projects, mathematical research, art, and photos."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="topbar__brand" href="index.html">Carlos</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+    </header>
+    <div class="nav-backdrop" data-nav-backdrop></div>
+
+    <div class="shell">
+      <aside class="nav" id="site-nav" data-nav>
+        <a class="brand" href="index.html">
+          <span class="brand__name">Carlos</span>
+          <span class="brand__tag">Math · software · art</span>
+        </a>
+        <ul class="nav__list">
+          <li>
+            <a class="nav__link is-active" href="index.html"><span>Home</span><span class="nav__index">01</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="projects.html"><span>Projects</span><span class="nav__index">02</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">03</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="publications.html"><span>Publications</span><span class="nav__index">04</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">05</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="photos.html"><span>Photos</span><span class="nav__index">06</span></a>
+          </li>
+        </ul>
+        <div class="nav__footer">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel">
+          <p class="kicker">Personal space</p>
+          <h1>A quiet place for my work.</h1>
+          <p class="lede">
+            Academic software, mathematical research, publications, art, and photos — organized by
+            section, without endless scrolling.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="projects.html">View projects</a>
+            <a class="btn btn--ghost" href="research.html">Go to research</a>
+          </div>
+
+          <div class="map" aria-label="Site map">
+            <a class="map__item" href="projects.html">
+              <div class="map__label">Software</div>
+              <h2 class="map__title">Projects</h2>
+              <p class="map__desc">Atlas and other tools.</p>
+            </a>
+            <a class="map__item" href="research.html">
+              <div class="map__label">Mathematics</div>
+              <h2 class="map__title">Research</h2>
+              <p class="map__desc">Research lines and notes.</p>
+            </a>
+            <a class="map__item" href="publications.html">
+              <div class="map__label">Papers</div>
+              <h2 class="map__title">Publications</h2>
+              <p class="map__desc">Articles and preprints.</p>
+            </a>
+            <a class="map__item" href="art.html">
+              <div class="map__label">Visual</div>
+              <h2 class="map__title">Art & photos</h2>
+              <p class="map__desc">Visual work and archive.</p>
+            </a>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <span class="hero-visual__mark">C.</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carlos — Publications</title>
+    <meta name="description" content="Publications, preprints, and academic work by Carlos." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="topbar__brand" href="index.html">Carlos</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+    </header>
+    <div class="nav-backdrop" data-nav-backdrop></div>
+
+    <div class="shell">
+      <aside class="nav" id="site-nav" data-nav>
+        <a class="brand" href="index.html">
+          <span class="brand__name">Carlos</span>
+          <span class="brand__tag">Math · software · art</span>
+        </a>
+        <ul class="nav__list">
+          <li>
+            <a class="nav__link" href="index.html"><span>Home</span><span class="nav__index">01</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="projects.html"><span>Projects</span><span class="nav__index">02</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">03</span></a>
+          </li>
+          <li>
+            <a class="nav__link is-active" href="publications.html"><span>Publications</span><span class="nav__index">04</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">05</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="photos.html"><span>Photos</span><span class="nav__index">06</span></a>
+          </li>
+        </ul>
+        <div class="nav__footer">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel">
+          <p class="kicker">Publications</p>
+          <h1>Papers and preprints.</h1>
+          <p class="lede">
+            A compact list. Each entry: year, title, venue, and links (PDF, arXiv, DOI).
+          </p>
+
+          <div class="stack">
+            <article class="entry">
+              <div class="entry__meta">2025</div>
+              <div>
+                <h2 class="entry__title">Title of the most recent paper</h2>
+                <p class="entry__text">Authors · Journal / Conference / Preprint</p>
+                <div class="entry__links">
+                  <a href="#">PDF</a>
+                  <a href="#">arXiv</a>
+                  <a href="#">DOI</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">2024</div>
+              <div>
+                <h2 class="entry__title">Second representative paper</h2>
+                <p class="entry__text">Authors · Venue</p>
+                <div class="entry__links">
+                  <a href="#">PDF</a>
+                  <a href="#">arXiv</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="entry__meta">2023</div>
+              <div>
+                <h2 class="entry__title">Earlier work / thesis / extended notes</h2>
+                <p class="entry__text">Authors · Venue or institution</p>
+                <div class="entry__links">
+                  <a href="#">PDF</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

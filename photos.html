@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carlos — Photos</title>
+    <meta name="description" content="Photo archive by Carlos." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="topbar__brand" href="index.html">Carlos</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+    </header>
+    <div class="nav-backdrop" data-nav-backdrop></div>
+
+    <div class="shell">
+      <aside class="nav" id="site-nav" data-nav>
+        <a class="brand" href="index.html">
+          <span class="brand__name">Carlos</span>
+          <span class="brand__tag">Math · software · art</span>
+        </a>
+        <ul class="nav__list">
+          <li>
+            <a class="nav__link" href="index.html"><span>Home</span><span class="nav__index">01</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="projects.html"><span>Projects</span><span class="nav__index">02</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">03</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="publications.html"><span>Publications</span><span class="nav__index">04</span></a>
+          </li>
+          <li>
+            <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">05</span></a>
+          </li>
+          <li>
+            <a class="nav__link is-active" href="photos.html"><span>Photos</span><span class="nav__index">06</span></a>
+          </li>
+        </ul>
+        <div class="nav__footer">
+          <a href="mailto:hello@example.com">hello@example.com</a>
+          <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="panel">
+          <p class="kicker">Photos</p>
+          <h1>Photo archive.</h1>
+          <p class="lede">
+            A curated selection, not a feed. Ideal for 6–12 strong images. Put files in
+            <code>assets/photos/</code>.
+          </p>
+
+          <div class="gallery" aria-label="Photo selection">
+            <div class="gallery__cell"><span>Photo 01</span></div>
+            <div class="gallery__cell"><span>Photo 02</span></div>
+            <div class="gallery__cell"><span>Photo 03</span></div>
+            <div class="gallery__cell gallery__cell--wide"><span>Photo 04 — wide</span></div>
+            <div class="gallery__cell"><span>Photo 05</span></div>
+            <div class="gallery__cell"><span>Photo 06</span></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
