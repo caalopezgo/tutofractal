@@ -3,11 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Carlos López González — Applied math &amp; ML</title>
+    <title>Carlos López González — TutoFractal</title>
     <meta
       name="description"
-      content="Carlos López González — applied mathematician and ML engineer. From theory (TDA, fractals) to deployed systems like Atlas."
+      content="Personal site of Carlos López González (Tuto): civil engineer turned mathematician and builder — projects, experience, research, and visual work."
     />
+    <meta property="og:title" content="Carlos López González — TutoFractal" />
+    <meta
+      property="og:description"
+      content="Civil engineer → quantitative modeling → mathematics → deployed systems. Personal site for projects, experience, research, and visual work."
+    />
+    <meta property="og:url" content="https://tutofractal.com/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +26,7 @@
   </head>
   <body>
     <header class="topbar">
-      <a class="topbar__brand" href="index.html">Carlos López González</a>
+      <a class="topbar__brand" href="index.html">Tuto López</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
         Menu
       </button>
@@ -29,7 +37,7 @@
       <aside class="nav" id="site-nav" data-nav>
         <a class="brand" href="index.html">
           <span class="brand__name">Carlos López González</span>
-          <span class="brand__tag">Applied math · ML · systems</span>
+          <span class="brand__tag">TutoFractal · mathematician · engineer · builder</span>
         </a>
         <ul class="nav__list">
           <li>
@@ -39,20 +47,19 @@
             <a class="nav__link" href="projects.html"><span>Projects</span><span class="nav__index">02</span></a>
           </li>
           <li>
-            <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">03</span></a>
+            <a class="nav__link" href="experience.html"><span>Experience</span><span class="nav__index">03</span></a>
           </li>
           <li>
-            <a class="nav__link" href="publications.html"><span>Writing &amp; talks</span><span class="nav__index">04</span></a>
+            <a class="nav__link" href="research.html"><span>Research</span><span class="nav__index">04</span></a>
           </li>
           <li>
-            <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">05</span></a>
+            <a class="nav__link" href="publications.html"><span>Writing &amp; talks</span><span class="nav__index">05</span></a>
           </li>
           <li>
-            <a class="nav__link" href="photos.html"><span>Photos</span><span class="nav__index">06</span></a>
+            <a class="nav__link" href="visual.html"><span>Visual</span><span class="nav__index">06</span></a>
           </li>
         </ul>
         <div class="nav__footer">
-          <!-- TODO: add preferred personal email when confirmed -->
           <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
           <a href="assets/cv.pdf">CV (PDF)</a>
@@ -61,45 +68,71 @@
 
       <main class="main">
         <section class="panel">
-          <p class="kicker">Bay Area · Applied math + ML</p>
-          <h1>From theory to deployed systems.</h1>
-          <p class="lede">
-            I’m Carlos López González (Tuto) — mathematician and engineer working at the intersection of
-            applied math, machine learning, and productized tools. Evidence spans TDA and fractal
-            computation, AI in mathematics education, and shipped systems like Atlas.
-          </p>
-          <p class="currently">
-            <strong>Currently:</strong> building Atlas (instructor AI workflows) and open to tech roles in
-            data science, ML engineering, applied science, and analytics — Bay Area / remote.
-          </p>
+          <p class="kicker">Bay Area · TutoFractal</p>
+          <h1>Hello — I’m Tuto.</h1>
+          <div class="story">
+            <p>
+              I’m Carlos López González. Friends and colleagues often call me Tuto. This site —
+              <strong>tutofractal.com</strong> — is my personal space: where engineering, mathematics,
+              teaching, and visual curiosity meet.
+            </p>
+            <p>
+              I started as a civil engineer in Buenos Aires, working on infrastructure and
+              waste-to-energy projects where timelines, budgets, and models had to hold up in the real
+              world. That pull toward quantitative structure led me into mathematics — an MA at SFSU,
+              teaching, research on math–art cognition — and into building software and ML systems you
+              can actually use.
+            </p>
+            <p>
+              Today I care about the same through-line: <em>civil engineer → quantitative modeling →
+              mathematics → deployed systems</em>. Sometimes that looks like Atlas for instructors;
+              sometimes fractals and TDA; sometimes probability tooling or on-device vision.
+            </p>
+          </div>
           <div class="actions">
-            <a class="btn btn--primary" href="projects.html">Selected systems</a>
-            <a class="btn btn--ghost" href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="btn btn--primary" href="projects.html">Explore projects</a>
+            <a class="btn btn--ghost" href="experience.html">Engineering path</a>
             <a class="btn btn--ghost" href="assets/cv.pdf">CV</a>
           </div>
 
           <div class="map" aria-label="Site map">
             <a class="map__item" href="projects.html">
-              <div class="map__label">Evidence</div>
+              <div class="map__label">Software &amp; ML</div>
               <h2 class="map__title">Projects</h2>
-              <p class="map__desc">Atlas, on-device CV, probability systems.</p>
+              <p class="map__desc">Atlas, vision, probability, math tools.</p>
+            </a>
+            <a class="map__item" href="experience.html">
+              <div class="map__label">Civil &amp; teaching</div>
+              <h2 class="map__title">Experience</h2>
+              <p class="map__desc">Infrastructure, energy, classroom.</p>
             </a>
             <a class="map__item" href="research.html">
               <div class="map__label">Methods</div>
               <h2 class="map__title">Research</h2>
-              <p class="map__desc">TDA, fractals, math cognition, applied ML.</p>
+              <p class="map__desc">TDA, fractals, cognition, applied ML.</p>
             </a>
             <a class="map__item" href="publications.html">
               <div class="map__label">Record</div>
               <h2 class="map__title">Writing &amp; talks</h2>
-              <p class="map__desc">Thesis, colloquia, JMM, collaborations.</p>
+              <p class="map__desc">Thesis, JMM, colloquia.</p>
             </a>
-            <a class="map__item" href="art.html">
-              <div class="map__label">Context</div>
-              <h2 class="map__title">Art &amp; photos</h2>
-              <p class="map__desc">Visual practice tied to math-art work.</p>
+            <a class="map__item" href="visual.html">
+              <div class="map__label">Personal</div>
+              <h2 class="map__title">Visual</h2>
+              <p class="map__desc">Math–art thread &amp; fractal identity.</p>
+            </a>
+            <a class="map__item" href="docs/atlas.html">
+              <div class="map__label">Building</div>
+              <h2 class="map__title">Atlas</h2>
+              <p class="map__desc">Instructor AI workflows I’m shipping.</p>
             </a>
           </div>
+
+          <p class="site-foot">
+            Open to conversations across tech/ML, applied science, civil/infra, and EdTech —
+            <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
+            is the best first contact.
+          </p>
         </section>
       </main>
     </div>

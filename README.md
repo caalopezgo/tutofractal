@@ -1,8 +1,8 @@
 # tutofractal.com
 
-Personal site for **Carlos López González** — applied math + ML, from theory to deployed systems.
+Personal site for **Carlos López González (Tuto)** — mathematician, engineer, builder.
 
-Static multipage HTML. Deployed via Netlify from this repo.
+**Home = person · Sections = professions/projects**
 
 ## Local
 
@@ -12,8 +12,15 @@ python3 -m http.server 5173
 
 ## Structure
 
-- `index.html` — positioning for tech hiring
-- `projects.html` — Atlas, CV/ML systems, public math repos
-- `research.html` / `publications.html` — themes + verified writing/talks
-- `docs/` — project briefs (Atlas, Pineapple, PitchPrice)
-- `assets/cv.pdf` — resume
+| Page | Door |
+| --- | --- |
+| `index.html` | Personal home / story |
+| `projects.html` | Software & ML |
+| `experience.html` | Civil, infrastructure, teaching |
+| `research.html` | Methods & themes |
+| `publications.html` | Writing & talks |
+| `visual.html` | Math–art / fractal identity |
+| `docs/` | Project briefs |
+
+Contact: LinkedIn (primary). Add a preferred personal email when confirmed.
+CV: `assets/cv.pdf`
