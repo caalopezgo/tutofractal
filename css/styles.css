@@ -1622,6 +1622,50 @@ h2 {
 }
 
 @media (max-width: 860px) {
+  .section-page {
+    background-color: #111;
+    background-image:
+      linear-gradient(180deg, rgba(8, 8, 8, 0.76) 0%, rgba(8, 8, 8, 0.4) 100%),
+      var(--section-image);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .section-page .main {
+    color: #fff;
+  }
+
+  .section-page .lede,
+  .section-page .story,
+  .section-page .entry__text,
+  .section-page .site-foot,
+  .section-page figcaption {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .section-page .kicker,
+  .section-page .entry__meta {
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  .section-page .entry,
+  .section-page .site-foot {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .section-page .entry__links a,
+  .section-page .site-foot a {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .section-page .focus__item {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .section-page .focus__item h2 {
+    color: #fff;
+  }
+
   .home-page {
     height: 100dvh;
     overflow: hidden;
@@ -1757,6 +1801,22 @@ h2 {
   .longform-page .entry__links a,
   .longform-page .site-foot a {
     color: rgba(255, 255, 255, 0.92);
+  }
+
+  .topbar {
+    border-bottom-color: rgba(255, 255, 255, 0.22);
+    background: rgba(8, 8, 8, 0.78);
+    color: #fff;
+  }
+
+  .topbar__brand {
+    color: #fff;
+  }
+
+  .nav-toggle {
+    border-color: rgba(255, 255, 255, 0.38);
+    background: transparent;
+    color: #fff;
   }
 
   .overview-page,
