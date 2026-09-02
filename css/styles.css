@@ -129,16 +129,57 @@ button {
   font-size: 1.05rem;
 }
 
-.home-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.36fr);
-  align-items: start;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  margin-bottom: 1.75rem;
+.home-hero {
+  position: relative;
+  min-height: clamp(33rem, 65vh, 43rem);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #171717;
+  box-shadow: var(--shadow);
 }
 
-.home-intro .story {
-  margin-bottom: 0;
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 8, 8, 0.92) 0%, rgba(8, 8, 8, 0.68) 38%, rgba(8, 8, 8, 0.08) 72%);
+}
+
+.home-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: inherit;
+  max-width: 36rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  color: #fff;
+}
+
+.home-hero .kicker,
+.home-hero .story,
+.home-hero .story p,
+.home-hero .home-poem p:not(.kicker) {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.home-hero h1 {
+  max-width: 10ch;
+  margin-bottom: 0.55rem;
+  color: #fff;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+}
+
+.home-hero .story {
+  max-width: 31rem;
+  margin-bottom: 1.2rem;
+}
+
+.home-hero .story p {
+  font-size: 1rem;
 }
 
 .home-poem {
@@ -147,6 +188,19 @@ button {
   max-width: 34rem;
   border-left: 2px solid var(--warm);
   background: color-mix(in srgb, white 70%, transparent);
+}
+
+.home-hero .home-poem {
+  margin: 0;
+  max-width: 24rem;
+  padding: 0.85rem 1rem;
+  border-left-color: var(--warm);
+  background: rgba(16, 16, 16, 0.64);
+  backdrop-filter: blur(5px);
+}
+
+.home-hero .home-poem a {
+  color: #fff;
 }
 
 .home-poem .kicker {
@@ -185,6 +239,14 @@ button {
   box-shadow: var(--shadow);
 }
 
+.home-hero .portrait {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .portrait img {
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -194,6 +256,12 @@ button {
 .portrait--art img {
   aspect-ratio: 4 / 3;
   filter: grayscale(1);
+}
+
+.home-hero .portrait--art img {
+  height: 100%;
+  aspect-ratio: auto;
+  object-position: center;
 }
 
 .project-media {
@@ -298,12 +366,20 @@ button {
 }
 
 @media (max-width: 860px) {
-  .home-intro {
-    grid-template-columns: 1fr;
+  .home-hero {
+    min-height: 38rem;
   }
 
-  .portrait {
-    max-width: 320px;
+  .home-hero::after {
+    background: linear-gradient(0deg, rgba(8, 8, 8, 0.93) 0%, rgba(8, 8, 8, 0.6) 60%, rgba(8, 8, 8, 0.12) 100%);
+  }
+
+  .home-hero__content {
+    justify-content: flex-end;
+  }
+
+  .home-hero .portrait {
+    max-width: none;
   }
 
   .visual-grid {
