@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Carlos López González — TutoFractal</title>
+    <title>Carlos López González · TutoFractal</title>
     <meta
       name="description"
-      content="Personal site of Carlos López González (Tuto): civil engineer turned mathematician and builder — projects, experience, research, and visual work."
+      content="Carlos López González (Tuto): mathematics, systems, teaching, and art."
     />
-    <meta property="og:title" content="Carlos López González — TutoFractal" />
+    <meta property="og:title" content="Carlos López González · TutoFractal" />
     <meta
       property="og:description"
       content="Civil engineer → quantitative modeling → mathematics → deployed systems. Personal site for projects, experience, research, and visual work."
@@ -22,7 +22,7 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css?v=20260901" />
   </head>
   <body>
     <header class="topbar">
@@ -58,6 +58,9 @@
           <li>
             <a class="nav__link" href="visual.html"><span>Visual</span><span class="nav__index">06</span></a>
           </li>
+          <li>
+            <a class="nav__link" href="art.html"><span>Art</span><span class="nav__index">07</span></a>
+          </li>
         </ul>
         <div class="nav__footer">
           <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -69,31 +72,29 @@
       <main class="main">
         <section class="panel">
           <p class="kicker">Bay Area · TutoFractal</p>
-          <h1>Hello — I’m Tuto.</h1>
-          <div class="story">
-            <p>
-              I’m Carlos López González. Friends and colleagues often call me Tuto. This site —
-              <strong>tutofractal.com</strong> — is my personal space: where engineering, mathematics,
-              teaching, and visual curiosity meet.
-            </p>
-            <p>
-              I started as a civil engineer in Buenos Aires, working on infrastructure and
-              waste-to-energy projects where timelines, budgets, and models had to hold up in the real
-              world. That pull toward quantitative structure led me into mathematics — an MA at SFSU,
-              teaching, research on math–art cognition — and into building software and ML systems you
-              can actually use.
-            </p>
-            <p>
-              Today I care about the same through-line: <em>civil engineer → quantitative modeling →
-              mathematics → deployed systems</em>. Sometimes that looks like Atlas for instructors;
-              sometimes fractals and TDA; sometimes probability tooling or on-device vision.
-            </p>
+          <h1>Hello, I’m Tuto.</h1>
+          <div class="home-intro">
+            <div class="story">
+              <p>
+                I’m Carlos López González, Tuto. I work across mathematics, teaching, and systems,
+                and keep an art practice in photography and poetry. This is the record of those threads.
+              </p>
+            </div>
+            <figure class="portrait portrait--art">
+              <img src="assets/photos/anthology-2.jpg" alt="Black and white street mural with people walking in front" />
+            </figure>
           </div>
           <div class="actions">
             <a class="btn btn--primary" href="projects.html">Explore projects</a>
-            <a class="btn btn--ghost" href="experience.html">Engineering path</a>
-            <a class="btn btn--ghost" href="assets/cv.pdf">CV</a>
+            <a class="btn btn--ghost" href="art.html">Art &amp; poems</a>
           </div>
+
+          <aside class="home-poem" aria-label="Poem excerpt">
+            <p class="kicker">The Rough Cedar · 2020</p>
+            <p>“But he was always able to look at me<br />and sometimes he smiled a bit<br />just like the rough cedar<br />on a cold night.”</p>
+            <a href="art.html">Read the poems →</a>
+          </aside>
+
 
           <div class="map" aria-label="Site map">
             <a class="map__item" href="projects.html">
@@ -117,9 +118,14 @@
               <p class="map__desc">Thesis, JMM, colloquia.</p>
             </a>
             <a class="map__item" href="visual.html">
-              <div class="map__label">Personal</div>
+              <div class="map__label">Photography</div>
               <h2 class="map__title">Visual</h2>
-              <p class="map__desc">Math–art thread &amp; fractal identity.</p>
+              <p class="map__desc">Landscapes and black &amp; white studies.</p>
+            </a>
+            <a class="map__item" href="art.html">
+              <div class="map__label">Writing</div>
+              <h2 class="map__title">Art</h2>
+              <p class="map__desc">Poems and photographic practice.</p>
             </a>
             <a class="map__item" href="docs/atlas.html">
               <div class="map__label">Building</div>
@@ -129,7 +135,7 @@
           </div>
 
           <p class="site-foot">
-            Open to conversations across tech/ML, applied science, civil/infra, and EdTech —
+            Open to conversations across tech/ML, applied science, civil/infra, and EdTech.
             <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
             is the best first contact.
           </p>

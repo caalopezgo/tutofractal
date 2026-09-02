@@ -1,6 +1,6 @@
 # tutofractal.com
 
-Personal site for **Carlos López González (Tuto)** — mathematician, engineer, builder.
+Personal site for **Carlos López González (Tuto)**, mathematician, engineer, builder.
 
 **Home = person · Sections = professions/projects**
 
@@ -19,7 +19,7 @@ python3 -m http.server 5173
 | `experience.html` | Civil, infrastructure, teaching |
 | `research.html` | Methods & themes |
 | `publications.html` | Writing & talks |
-| `visual.html` | Math–art / fractal identity |
+| `visual.html` | Math-art / fractal identity |
 | `docs/` | Project briefs |
 
 Contact: LinkedIn (primary). Add a preferred personal email when confirmed.
