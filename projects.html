@@ -6,7 +6,7 @@
     <title>Projects · Carlos López González</title>
     <meta
       name="description"
-      content="Software and ML projects by Carlos López González: Atlas, on-device vision, probability systems, TDA and fractal tools."
+      content="Software and ML projects by Carlos López González: Edutecnik, Fantasy Advisor, on-device vision, probability systems, TDA and fractal tools."
     />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,7 +17,7 @@
     />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body>
+  <body class="section-page projects-page" style="--section-image: url('assets/photos/volcanic-patterns.jpg')">
     <header class="topbar">
       <a class="topbar__brand" href="index.html">Tuto López</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
@@ -58,7 +58,6 @@
         <div class="nav__footer">
           <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="assets/cv.pdf">CV (PDF)</a>
         </div>
       </aside>
 
@@ -67,31 +66,26 @@
           <p class="kicker">Projects</p>
           <h1>Software &amp; systems.</h1>
           <p class="lede">
-            This is the tech door: products and tools I’ve built. For civil and teaching roles, see
-            <a href="experience.html">Experience</a>. For personal context, start at
-            <a href="index.html">Home</a>.
+            Selected products, experiments, and tools I’ve built.
           </p>
 
           <div class="stack">
             <article class="entry">
               <div class="entry__meta">Flagship</div>
               <div>
-                <h2 class="entry__title">Atlas</h2>
+                <h2 class="entry__title">Edutecnik</h2>
                 <p class="entry__text">
-                  Academic intelligence for instructors: prepare lessons, draft assessment feedback, and
-                  keep humans in the loop. Start from uploaded course materials; LMS connect is optional.
+                  Academic intelligence for instructors, built around course materials and human review.
                 </p>
-                <div class="project-media">
-                  <img src="assets/projects/atlas.png" alt="Atlas instructor interface screenshot" />
-                </div>
                 <div class="pill-row">
                   <span class="pill">React</span>
                   <span class="pill">Supabase</span>
                   <span class="pill">EdTech</span>
                 </div>
                 <div class="entry__links">
-                  <a href="https://atlas-academic.vercel.app" target="_blank" rel="noreferrer">Live pilot</a>
-                  <a href="docs/atlas.html">Brief</a>
+                  <a href="https://edutecnik-site.vercel.app" target="_blank" rel="noreferrer">Open app</a>
+                  <a href="https://github.com/caalopezgo/edutecnik-site" target="_blank" rel="noreferrer">GitHub</a>
+                  <a href="docs/edutecnik.html">Brief</a>
                 </div>
               </div>
             </article>
@@ -101,8 +95,7 @@
               <div>
                 <h2 class="entry__title">Pineapple Counter</h2>
                 <p class="entry__text">
-                  React Native + on-device detection (TFLite) to count produce on a conveyor: local ML,
-                  virtual count line, duplicate-aware counting. Demo on request (repo not public).
+                  On-device computer vision for counting produce on a conveyor. Demo on request.
                 </p>
                 <div class="pill-row">
                   <span class="pill">React Native</span>
@@ -120,12 +113,8 @@
               <div>
                 <h2 class="entry__title">PitchPrice</h2>
                 <p class="entry__text">
-                  Soccer probability diagnostics: Dixon-Coles modeling, temporal validation, calibration,
-                  and model-vs-market comparison in Streamlit. Bundled demo data is synthetic by design.
+                  Transparent soccer probability diagnostics, calibration, and market comparison.
                 </p>
-                <div class="project-media">
-                  <img src="assets/projects/pitchprice.png" alt="PitchPrice diagnostics overview screenshot" />
-                </div>
                 <div class="pill-row">
                   <span class="pill">Python</span>
                   <span class="pill">Streamlit</span>
@@ -138,12 +127,29 @@
             </article>
 
             <article class="entry">
+              <div class="entry__meta">Football analytics</div>
+              <div>
+                <h2 class="entry__title">Fantasy Advisor</h2>
+                <p class="entry__text">
+                  Auditable FPL captain recommendations and a track record updated around each gameweek.
+                </p>
+                <div class="pill-row">
+                  <span class="pill">Python</span>
+                  <span class="pill">Next.js</span>
+                  <span class="pill">FPL</span>
+                </div>
+                <div class="entry__links">
+                  <a href="https://web-one-psi-46.vercel.app" target="_blank" rel="noreferrer">Open app</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
               <div class="entry__meta">Theory → tools</div>
               <div>
                 <h2 class="entry__title">TDA · Fractals · Interactive math</h2>
                 <p class="entry__text">
-                  Public repos that make geometric ideas computable and teachable, part of the
-                  TutoFractal thread.
+                  Public tools that make geometry, topology, and fractals computable and teachable.
                 </p>
                 <div class="entry__links">
                   <a href="https://github.com/caalopezgo/Topological-Data-Analysis" target="_blank" rel="noreferrer">TDA</a>
@@ -158,8 +164,7 @@
               <div>
                 <h2 class="entry__title">Learning Analytics MVP</h2>
                 <p class="entry__text">
-                  Earlier React + Node + OpenAI experiment for tutoring modes and analytics. Patterns
-                  carried into Atlas.
+                  An early tutoring and analytics experiment whose patterns evolved into Edutecnik.
                 </p>
                 <div class="pill-row">
                   <span class="pill">React</span>

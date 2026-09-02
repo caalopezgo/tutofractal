@@ -17,7 +17,7 @@
     />
     <link rel="stylesheet" href="css/styles.css?v=20260831" />
   </head>
-  <body>
+  <body class="section-page overview-page visual-page" style="--section-image: url('assets/photos/volcanic-peak.jpg')">
     <header class="topbar">
       <a class="topbar__brand" href="index.html">Tuto López</a>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
@@ -58,7 +58,6 @@
         <div class="nav__footer">
           <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
           <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="assets/cv.pdf">CV (PDF)</a>
         </div>
       </aside>
 
@@ -66,56 +65,27 @@
         <section class="panel">
           <p class="kicker">Visual</p>
           <h1>Math, image, structure.</h1>
-          <div class="story">
-            <p>
-              TutoFractal is not only a domain name. Fractals, recursive form, and diagrammatic
-              thinking run through the work, from interactive Mandelbrot/Julia exploration to thesis
-              research on how students reason across mathematics and art (Fibonacci spiral and Hokusai’s
-              <em>Great Wave</em>), presented at JMM.
-            </p>
-            <p>
-              The site background is an original drip composition (inspired by abstract expressionism,
-              not a reproduction of any Pollock painting). Alongside the research and fractal tooling,
-              this page holds a small record of places where pattern, scale, and natural geometry become
-              visible.
-            </p>
-          </div>
-          <div class="actions">
-            <a class="btn btn--primary" href="https://github.com/caalopezgo/Fractal-Geometry" target="_blank" rel="noreferrer">Fractal Geometry repo</a>
-            <a class="btn btn--ghost" href="publications.html">Thesis &amp; talks</a>
-          </div>
+          <p class="lede">
+            A visual thread through natural geometry, photography, mathematical form, and art.
+          </p>
 
-          <section class="photo-section" aria-labelledby="volcanic-landscapes-title">
-            <div class="section-heading">
-              <p class="kicker">Field notes</p>
-              <h2 id="volcanic-landscapes-title">Volcanic landscapes</h2>
-              <p class="lede">Lava, crater rims, and the unexpectedly recursive textures of a changing landscape.</p>
-            </div>
-            <div class="photo-gallery">
-              <figure class="photo-gallery__feature">
-                <img src="assets/photos/volcanic-patterns.jpg" alt="Bands of lava and pale volcanic dunes dotted with small trees" />
-                <figcaption>Volcanic patterns: texture, contrast, and small scales inside a large field.</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/photos/volcanic-peak.jpg" alt="Snow-capped volcanic peak rising above a forest" />
-                <figcaption>Volcanic peak.</figcaption>
-              </figure>
-              <figure>
-                <img src="assets/photos/volcanic-crater.jpg" alt="Wide volcanic crater with paths, ridges, and a distant lake" />
-                <figcaption>Crater geometry.</figcaption>
-              </figure>
-            </div>
-          </section>
-
-          <div class="visual-grid" aria-label="Project visuals">
-            <figure>
-              <img src="assets/projects/atlas.png" alt="Atlas interface" />
-              <figcaption>Atlas: systems with a human interface.</figcaption>
-            </figure>
-            <figure>
-              <img src="assets/projects/pitchprice.png" alt="PitchPrice diagnostics" />
-              <figcaption>PitchPrice: probability made legible.</figcaption>
-            </figure>
+          <div class="visual-landing" aria-label="Visual paths">
+            <a class="visual-card visual-card--wide" href="photos.html">
+              <img src="assets/photos/volcanic-patterns.jpg" alt="Bands of lava and pale volcanic dunes dotted with small trees" />
+              <span><small>Field notes</small>Volcanic patterns</span>
+            </a>
+            <a class="visual-card" href="https://github.com/caalopezgo/Fractal-Geometry" target="_blank" rel="noreferrer">
+              <img src="assets/photos/volcanic-crater.jpg" alt="Wide volcanic crater with paths, ridges, and a distant lake" />
+              <span><small>Code</small>Fractal geometry</span>
+            </a>
+            <a class="visual-card" href="publications.html">
+              <img src="assets/photos/anthology-6.jpg" alt="Silhouettes behind a tall fence against a cloudy sky" />
+              <span><small>Research</small>Math and image</span>
+            </a>
+            <a class="visual-card visual-card--wide" href="art.html">
+              <img src="assets/photos/anthology-4.jpg" alt="Foam rising in front of a suspension bridge" />
+              <span><small>Archive</small>Art and memory</span>
+            </a>
           </div>
         </section>
       </main>
