@@ -1,4 +1,15 @@
 (() => {
+  const localHostnames = new Set(["localhost", "127.0.0.1", "::1"]);
+  const isLocalPreview =
+    window.location.protocol === "file:" || localHostnames.has(window.location.hostname);
+
+  if (isLocalPreview) {
+    document.querySelectorAll("[data-local-href]").forEach((link) => {
+      link.setAttribute("href", link.dataset.localHref);
+      link.removeAttribute("aria-disabled");
+    });
+  }
+
   const nav = document.querySelector("[data-nav]");
   const toggle = document.querySelector("[data-nav-toggle]");
   const backdrop = document.querySelector("[data-nav-backdrop]");
