@@ -19,124 +19,191 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css?v=20260907" />
+    <link rel="stylesheet" href="css/styles.css?v=20260916g" />
   </head>
   <body class="home-page">
-    <header class="topbar">
-      <a class="topbar__brand" href="index.html">Tuto López</a>
+    <header class="site-header" data-header>
+      <a class="site-header__brand" href="index.html">Tuto López <small>TutoFractal</small></a>
+      <nav class="site-header__nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Writing</a>
+        <a href="visual.html">Visual</a>
+        <a href="art.html">Art</a>
+      </nav>
       <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
         Menu
       </button>
     </header>
     <div class="nav-backdrop" data-nav-backdrop></div>
 
-    <div class="shell">
-      <aside class="nav" id="site-nav" data-nav>
-        <a class="brand" href="index.html">
-          <span class="brand__name">Carlos López González</span>
-          <span class="brand__tag">TutoFractal · mathematician · engineer · builder</span>
-        </a>
-        <ul class="nav__list">
-          <li>
-            <a class="nav__link is-active" href="index.html"><span>Home</span><span class="nav__index">01</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="projects.html" aria-disabled="true"><span>Projects</span><span class="nav__index">02</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="experience.html" aria-disabled="true"><span>Experience</span><span class="nav__index">03</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="research.html" aria-disabled="true"><span>Research</span><span class="nav__index">04</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="publications.html" aria-disabled="true"><span>Writing &amp; talks</span><span class="nav__index">05</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="visual.html" aria-disabled="true"><span>Visual</span><span class="nav__index">06</span></a>
-          </li>
-          <li>
-            <a class="nav__link" data-local-href="art.html" aria-disabled="true"><span>Art</span><span class="nav__index">07</span></a>
-          </li>
-        </ul>
-        <div class="nav__footer">
-          <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-      </aside>
+    <aside class="nav" id="site-nav" data-nav>
+      <a class="brand" href="index.html">
+        <span class="brand__name">Carlos López González</span>
+        <span class="brand__tag">TutoFractal · mathematician · engineer · builder</span>
+      </a>
+      <ul class="nav__list">
+        <li><a class="nav__link is-active" href="index.html">Home</a></li>
+        <li><a class="nav__link" href="projects.html">Projects</a></li>
+        <li><a class="nav__link" href="experience.html">Experience</a></li>
+        <li><a class="nav__link" href="research.html">Research</a></li>
+        <li><a class="nav__link" href="publications.html">Writing &amp; talks</a></li>
+        <li><a class="nav__link" href="visual.html">Visual</a></li>
+        <li><a class="nav__link" href="art.html">Art</a></li>
+      </ul>
+      <div class="nav__footer">
+        <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.instagram.com/fraktaltuto/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </aside>
 
-      <main class="main">
-        <section class="panel">
-          <section class="home-hero">
-            <figure class="portrait portrait--art">
-              <img src="assets/photos/anthology-2.jpg" alt="Black and white street mural with people walking in front" />
-            </figure>
-            <div class="home-hero__content">
-              <p class="kicker">Bay Area · TutoFractal</p>
-              <h1>Hello, I’m Tuto.</h1>
-              <div class="story">
-                <p>
-                  Mathematician and civil engineer building digital products for education and casinos.
-                  This site brings together my projects, research, and creative work.
-                </p>
-              </div>
-              <nav class="home-contact" aria-label="Contact and social profiles">
-                <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="https://www.instagram.com/fraktaltuto/" target="_blank" rel="noreferrer">Instagram</a>
-              </nav>
-            </div>
-          </section>
-
-
-          <div class="map" aria-label="Site map">
-            <a class="map__item" data-local-href="projects.html" aria-disabled="true">
-              <div class="map__label">Software &amp; ML</div>
-              <h2 class="map__title">Projects</h2>
-              <p class="map__desc">Edutecnik, Fantasy Advisor, vision, probability.</p>
-            </a>
-            <a class="map__item" data-local-href="experience.html" aria-disabled="true">
-              <div class="map__label">Civil &amp; teaching</div>
-              <h2 class="map__title">Experience</h2>
-              <p class="map__desc">Infrastructure, energy, classroom.</p>
-            </a>
-            <a class="map__item" data-local-href="research.html" aria-disabled="true">
-              <div class="map__label">Methods</div>
-              <h2 class="map__title">Research</h2>
-              <p class="map__desc">TDA, fractals, cognition, applied ML.</p>
-            </a>
-            <a class="map__item" data-local-href="publications.html" aria-disabled="true">
-              <div class="map__label">Record</div>
-              <h2 class="map__title">Writing &amp; talks</h2>
-              <p class="map__desc">Thesis, JMM, colloquia.</p>
-            </a>
-            <a class="map__item" data-local-href="visual.html" aria-disabled="true">
-              <div class="map__label">Photography</div>
-              <h2 class="map__title">Visual</h2>
-              <p class="map__desc">Landscapes and black &amp; white studies.</p>
-            </a>
-            <a class="map__item" data-local-href="art.html" aria-disabled="true">
-              <div class="map__label">Writing</div>
-              <h2 class="map__title">Art</h2>
-              <p class="map__desc">Poems and photographic practice.</p>
-            </a>
-            <a class="map__item" data-local-href="docs/edutecnik.html" aria-disabled="true">
-              <div class="map__label">Building</div>
-              <h2 class="map__title">Edutecnik</h2>
-              <p class="map__desc">Instructor AI workflows I’m shipping.</p>
-            </a>
-          </div>
-
-          <p class="site-foot">
-            Open to conversations across tech/ML, applied science, civil/infra, and EdTech.
-            <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">LinkedIn</a>
-            is the best first contact.
+    <main>
+      <section class="hero">
+        <figure class="hero__media">
+          <img src="assets/photos/anthology-2.jpg" alt="Black and white street mural with people walking in front" />
+        </figure>
+        <div class="hero__content">
+          <ul class="hero__roles">
+            <li>Mathematician</li>
+            <li>Civil engineer</li>
+            <li>Builder</li>
+            <li>Bay Area</li>
+          </ul>
+          <h1>Hello, I’m Tuto.</h1>
+          <p>
+            I build digital products for education and casinos, study how people learn
+            mathematics, and photograph the structures I find along the way.
           </p>
-        </section>
-      </main>
-    </div>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="projects.html">See the work</a>
+            <nav class="social" aria-label="Contact and social profiles">
+              <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.26.8-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.2.69.81.58A12 12 0 0 0 12 .3z"/></svg>
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.instagram.com/fraktaltuto/" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95C23.73 2.7 21.3.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+                <span>Instagram</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="hero__scroll" aria-hidden="true">Scroll</div>
+      </section>
+
+      <section class="section section--tight" aria-label="What I do">
+        <div class="pillars">
+          <a class="pillar reveal" href="projects.html">
+            <span class="kicker">Products</span>
+            <h2>Build</h2>
+            <p>Products for instructors, learners, and analysts: Edutecnik, Mathscape, Axiom, Fantasy Advisor.</p>
+            <span class="arrow-link">Projects</span>
+          </a>
+          <a class="pillar reveal" data-delay="1" href="research.html">
+            <span class="kicker">Methods</span>
+            <h2>Research</h2>
+            <p>How people learn mathematics, what AI changes in the classroom, and the geometry hiding in data.</p>
+            <span class="arrow-link">Research &amp; writing</span>
+          </a>
+          <a class="pillar reveal" data-delay="2" href="art.html">
+            <span class="kicker">Archive</span>
+            <h2>Make</h2>
+            <p>Black-and-white photography, volcanic landscapes, and a film about music and memory.</p>
+            <span class="arrow-link">Visual &amp; art</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="work-title">
+        <div class="section__head reveal">
+          <div>
+            <p class="kicker">Selected work</p>
+            <h2 id="work-title">Things I’ve shipped.</h2>
+          </div>
+          <a class="arrow-link" href="projects.html">All projects</a>
+        </div>
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <span class="work-card__meta">Flagship · EdTech</span>
+            <h3>Edutecnik</h3>
+            <p>Academic intelligence for instructors: prepare class, grade with human review, and see the course pulse. AI suggests; humans decide.</p>
+            <div class="work-card__foot">
+              <div class="work-card__links">
+                <a href="https://edutecnik.vercel.app" target="_blank" rel="noreferrer">Open app</a>
+                <a href="docs/edutecnik.html">Brief</a>
+              </div>
+            </div>
+          </article>
+          <article class="work-card reveal" data-delay="1">
+            <span class="work-card__meta">Interactive learning</span>
+            <h3>Mathscape</h3>
+            <p>A visual math game: 8 worlds, 40 challenges, free-play. Move curves and figures and watch equations connect to their graphs.</p>
+            <div class="work-card__foot">
+              <div class="work-card__links">
+                <a href="https://github.com/caalopezgo/mathscape" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+            </div>
+          </article>
+          <article class="work-card reveal" data-delay="2">
+            <span class="work-card__meta">Football analytics</span>
+            <h3>Fantasy Advisor</h3>
+            <p>Auditable FPL captain picks with a public track record, plus Pitch Lab: matchday briefs and roster tools for soccer staff.</p>
+            <div class="work-card__foot">
+              <div class="work-card__links">
+                <a href="https://web-one-psi-46.vercel.app" target="_blank" rel="noreferrer">Open app</a>
+                <a href="https://web-one-psi-46.vercel.app/pitch" target="_blank" rel="noreferrer">Pitch Lab</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="band-title">
+        <figure class="band__media">
+          <img src="assets/photos/volcanic-patterns.jpg" alt="Bands of lava and pale volcanic dunes dotted with small trees" loading="lazy" />
+        </figure>
+        <div class="band__content reveal">
+          <p class="kicker">Visual &amp; art</p>
+          <h2 id="band-title">Structure is everywhere.</h2>
+          <p>Volcanic fields, fractal sets, street murals in black and white. The same eye that builds systems also looks for pattern in the world.</p>
+          <div class="band__links">
+            <a class="arrow-link" href="visual.html">Visual thread</a>
+            <a class="arrow-link" href="art.html">Photographs &amp; film</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer" id="contact">
+        <div class="site-footer__grid">
+          <div class="reveal">
+            <p class="kicker">Contact</p>
+            <h2>Let’s talk.</h2>
+            <p>Open to conversations across tech/ML, applied science, civil/infra, and EdTech. LinkedIn is the fastest way to reach me.</p>
+            <a class="btn btn--primary" href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer">Message on LinkedIn</a>
+          </div>
+          <nav class="site-footer__links reveal" data-delay="1" aria-label="Profiles">
+            <a href="https://www.linkedin.com/in/tutolopezgonzalez/" target="_blank" rel="noreferrer"><span>LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0z"/></svg></a>
+            <a href="https://github.com/caalopezgo" target="_blank" rel="noreferrer"><span>GitHub</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.26.8-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.2.69.81.58A12 12 0 0 0 12 .3z"/></svg></a>
+            <a href="https://www.instagram.com/fraktaltuto/" target="_blank" rel="noreferrer"><span>Instagram</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.7.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98C23.99 15.67 24 15.26 24 12s-.01-3.67-.07-4.95C23.73 2.7 21.3.27 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></a>
+            <a href="https://math.sfsu.edu/people/tuto-lopez-gonzalez" target="_blank" rel="noreferrer"><span>SFSU profile</span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M7 17 17 7M9 7h8v8"/></svg></a>
+          </nav>
+        </div>
+        <div class="site-footer__meta">
+          <span>© 2026 Carlos López González</span>
+          <span>TutoFractal · Bay Area</span>
+        </div>
+      </footer>
+    </main>
 
     <script src="js/main.js"></script>
   </body>
