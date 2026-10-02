@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandelbrot · Live Zoom · TutoFractal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0a0c10;
+      --foam: #e8ece6;
+      --accent: #3d9a8b;
+      --muted: rgba(232, 236, 230, 0.55);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%; overflow: hidden;
+      background: var(--ink); color: var(--foam);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+    }
+    canvas {
+      display: block; width: 100vw; height: 100vh;
+      cursor: crosshair;
+    }
+    canvas.dragging { cursor: grabbing; }
+    .hud {
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+      display: grid; grid-template-rows: auto 1fr auto;
+      padding: clamp(1rem, 3vw, 2rem);
+      transition: opacity 0.45s ease;
+    }
+    body.ui-hidden .hud, body.ui-hidden .vignette { opacity: 0; }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .brand {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      letter-spacing: -0.02em; line-height: 1;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+    }
+    .brand em { font-style: italic; color: var(--accent); }
+    .meta {
+      text-align: right; font-size: 0.72rem; line-height: 1.55;
+      color: var(--muted); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+    }
+    .meta strong { color: var(--foam); font-weight: 500; }
+    .bottom {
+      display: flex; flex-wrap: wrap; align-items: flex-end;
+      justify-content: space-between; gap: 1rem;
+    }
+    .hint {
+      max-width: 36rem; font-size: 0.78rem; line-height: 1.5;
+      color: var(--muted); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+    }
+    .controls { pointer-events: auto; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    button, select {
+      appearance: none;
+      border: 1px solid rgba(232, 236, 230, 0.22);
+      background: rgba(10, 12, 16, 0.55);
+      color: var(--foam); font: inherit; font-size: 0.72rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: 0.65rem 0.9rem; backdrop-filter: blur(10px); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    button:hover, select:hover { border-color: rgba(61, 154, 139, 0.7); color: #fff; }
+    button.active { border-color: var(--accent); color: var(--accent); }
+    select {
+      padding-right: 1.6rem;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--foam) 50%),
+        linear-gradient(135deg, var(--foam) 50%, transparent 50%);
+      background-position: calc(100% - 14px) 50%, calc(100% - 9px) 50%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+    .vignette {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      transition: opacity 0.45s ease;
+      background:
+        radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.55) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.28), transparent 18%, transparent 78%, rgba(0, 0, 0, 0.45));
+    }
+    .fade {
+      position: fixed; inset: 0; pointer-events: none; z-index: 3;
+      background: #000; opacity: 0;
+    }
+    .click-pulse {
+      position: fixed; width: 18px; height: 18px; margin: -9px 0 0 -9px;
+      border: 1.5px solid rgba(232, 236, 230, 0.85); border-radius: 50%;
+      pointer-events: none; z-index: 4; opacity: 0; transform: scale(0.4);
+    }
+    .click-pulse.on { animation: pulse 0.7s ease-out forwards; }
+    @keyframes pulse {
+      0% { opacity: 0.9; transform: scale(0.35); }
+      100% { opacity: 0; transform: scale(2.4); }
+    }
+    .hud-links { pointer-events: auto; margin-top: 0.55rem; display: flex; gap: 0.75rem; }
+    .hud-links a {
+      color: var(--muted); font-size: 0.68rem; letter-spacing: 0.04em;
+      text-transform: uppercase; text-decoration: none;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+    }
+    .hud-links a:hover { color: var(--foam); }
+    .badge {
+      display: inline-block; margin-top: 0.35rem;
+      padding: 0.15rem 0.45rem;
+      border: 1px solid rgba(61, 154, 139, 0.45);
+      color: var(--accent); font-size: 0.62rem; letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="vignette"></div>
+  <div class="fade" id="fade"></div>
+  <div class="click-pulse" id="pulse"></div>
+  <div class="hud">
+    <div class="top">
+      <div>
+        <div class="brand">Mandelbrot <em>infinito</em></div>
+        <div class="badge">GPU PERTURBATION</div>
+        <div class="hud-links">
+          <a href="index.html">gallery</a>
+          <a href="../visual.html">site</a>
+        </div>
+      </div>
+      <div class="meta">
+        zoom <strong id="zoom">1×</strong><br />
+        iteraciones <strong id="iters">200</strong><br />
+        destino <strong id="dest">Valle del caballito</strong><br />
+        modo <strong id="mode">WebGL</strong><br />
+        centro <strong id="center">−0.75 + 0i</strong>
+      </div>
+    </div>
+    <div></div>
+    <div class="bottom">
+      <p class="hint">
+        Zoom continuo sin pausas: la órbita se prepara en segundo plano.
+        Click bucea · espacio pausa · H UI · F fullscreen.
+      </p>
+      <div class="controls">
+        <button id="play" class="active" type="button">Pausa</button>
+        <select id="target" aria-label="Destino">
+          <option value="seahorse">Valle del caballito</option>
+          <option value="elephant">Valle del elefante</option>
+          <option value="spiral">Espiral doble</option>
+          <option value="mini">Mini-Mandelbrot</option>
+          <option value="filament">Filamento fino</option>
+          <option value="custom" hidden>Custom</option>
+        </select>
+        <select id="palette" aria-label="Paleta">
+          <option value="0">Ámbar abisal</option>
+          <option value="1">Fuego frío</option>
+          <option value="2">Óxido</option>
+          <option value="3">Nocturno</option>
+        </select>
+        <button id="reset" type="button">Reiniciar</button>
+        <button id="faster" type="button">Más rápido</button>
+        <button id="slower" type="button">Más lento</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const FRAC_BITS = 256n;
+    const ONE = 1n << FRAC_BITS;
+    const PERTURB_SCALE = 5e-5;
+    const PREFETCH_SCALE = 8e-3; // armar órbita antes, sin congelar el zoom
+    const MIN_SCALE = 1e-20;
+    const START_SCALE = 2.8;
+    const ORBIT_CAP = 1600;
+    const ORBIT_BATCH = 40;
+
+    function bfFromString(str) {
+      str = String(str).trim().toLowerCase();
+      let sign = 1n;
+      if (str[0] === "-") { sign = -1n; str = str.slice(1); }
+      else if (str[0] === "+") str = str.slice(1);
+      let exp10 = 0;
+      const eIdx = str.indexOf("e");
+      if (eIdx >= 0) {
+        exp10 = parseInt(str.slice(eIdx + 1), 10) || 0;
+        str = str.slice(0, eIdx);
+      }
+      let [ip, fp = ""] = str.split(".");
+      ip = ip.replace(/^0+/, "") || "0";
+      fp = fp.replace(/0+$/, "");
+      const digits = BigInt(ip + fp || "0");
+      const pow = exp10 - fp.length;
+      if (pow >= 0) return sign * digits * (10n ** BigInt(pow)) * ONE;
+      return sign * ((digits * ONE) / (10n ** BigInt(-pow)));
+    }
+    function bfFromNumber(n) {
+      if (!Number.isFinite(n) || n === 0) return 0n;
+      return bfFromString(n.toString());
+    }
+    function bfToFloat(v) {
+      if (v === 0n) return 0;
+      const sign = v < 0n ? -1 : 1;
+      let x = v < 0n ? -v : v;
+      const bitLen = BigInt(x.toString(2).length);
+      const keep = 53n;
+      let shift = bitLen - keep;
+      let mant;
+      if (shift > 0n) {
+        const roundBit = (x >> (shift - 1n)) & 1n;
+        mant = Number((x >> shift) + roundBit);
+      } else {
+        mant = Number(x << (-shift));
+        shift = 0n;
+      }
+      return sign * mant * Math.pow(2, Number(shift - FRAC_BITS));
+    }
+    function bfToString(v, places = 18) {
+      if (v === 0n) return "0";
+      const sign = v < 0n ? "-" : "";
+      let x = v < 0n ? -v : v;
+      const ip = x / ONE;
+      let rem = x % ONE;
+      let frac = "";
+      for (let i = 0; i < places; i++) {
+        rem *= 10n;
+        frac += String(rem / ONE);
+        rem %= ONE;
+      }
+      return sign + ip.toString() + "." + frac;
+    }
+    function bfAdd(a, b) { return a + b; }
+    function bfSub(a, b) { return a - b; }
+    function bfMul(a, b) { return (a * b) / ONE; }
+    function bfToDD(v) {
+      const hi = bfToFloat(v);
+      const lo = bfToFloat(bfSub(v, bfFromNumber(hi)));
+      return { hi, lo };
+    }
+
+    const TARGETS = {
+      seahorse: { re: "-0.743643887037151", im: "0.131825904205330", label: "Valle del caballito" },
+      elephant: { re: "0.276465547348716", im: "-0.006848583752122", label: "Valle del elefante" },
+      spiral: { re: "-0.7746806106269039", im: "-0.137416338625618", label: "Espiral doble" },
+      mini: { re: "-1.768778833", im: "-0.001738827", label: "Mini-Mandelbrot" },
+      filament: { re: "-0.16070135", im: "1.03756655", label: "Filamento fino" },
+      custom: { re: "-0.743643887037151", im: "0.131825904205330", label: "Click personalizado" },
+    };
+
+    const canvas = document.getElementById("c");
+    const gl = canvas.getContext("webgl2", {
+      antialias: false,
+      powerPreference: "high-performance",
+    });
+    if (!gl) {
+      document.body.innerHTML = "<p style='padding:2rem'>Se necesita WebGL2 para zoom profundo nítido.</p>";
+      throw new Error("WebGL2 required");
+    }
+
+    function compile(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+      return s;
+    }
+    function link(vs, fs) {
+      const p = gl.createProgram();
+      gl.attachShader(p, compile(gl.VERTEX_SHADER, vs));
+      gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+      return p;
+    }
+
+    const vert = `#version 300 es
+      in vec2 a_pos;
+      void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+    `;
+
+    const palFn = `
+      vec3 pal(float t, float id) {
+        vec3 a,b,c,d;
+        if (id < 0.5) { a=vec3(0.22,0.18,0.16); b=vec3(0.55,0.42,0.35); c=vec3(1.0,0.85,0.7); d=vec3(0.15,0.45,0.55); }
+        else if (id < 1.5) { a=vec3(0.12,0.16,0.22); b=vec3(0.55,0.40,0.35); c=vec3(1.0,0.90,0.7); d=vec3(0.05,0.25,0.45); }
+        else if (id < 2.5) { a=vec3(0.18,0.12,0.10); b=vec3(0.55,0.28,0.18); c=vec3(0.95,0.80,0.55); d=vec3(0.40,0.15,0.05); }
+        else { a=vec3(0.08,0.12,0.10); b=vec3(0.25,0.45,0.35); c=vec3(0.90,0.85,0.55); d=vec3(0.20,0.35,0.15); }
+        return a + b * cos(6.28318 * (c * t + d));
+      }
+    `;
+
+    const classicFS = `#version 300 es
+      precision highp float;
+      uniform vec2 u_resolution, u_center, u_center_lo;
+      uniform float u_scale, u_maxIter, u_hueShift, u_palette;
+      out vec4 outColor;
+      ${palFn}
+      float mandel(vec2 c, float maxIter) {
+        vec2 z = vec2(0.0);
+        float iter = 0.0;
+        bool esc = false;
+        for (float i = 0.0; i < 2000.0; i++) {
+          if (i >= maxIter) break;
+          z = vec2(z.x*z.x - z.y*z.y, 2.0*z.x*z.y) + c;
+          if (dot(z,z) > 256.0) { esc = true; iter = i; break; }
+        }
+        if (!esc) return -1.0;
+        float log_zn = log(dot(z,z)) / 2.0;
+        float nu = log(log_zn / log(2.0)) / log(2.0);
+        return iter + 1.0 - nu;
+      }
+      vec3 colorAt(vec2 fc) {
+        vec2 uv = (fc - 0.5 * u_resolution) / u_resolution.y;
+        vec2 c = u_center + (u_center_lo + uv * u_scale);
+        float s = mandel(c, u_maxIter);
+        if (s < 0.0) return vec3(0.015, 0.018, 0.028);
+        // log coloring: estable cuando cambia el presupuesto de iters
+        float t = log(1.0 + s) * 0.22 + u_hueShift;
+        vec3 col = pow(max(pal(t, u_palette), 0.0), vec3(0.92));
+        return col + exp(-0.012 * s) * vec3(0.18, 0.22, 0.16);
+      }
+      void main() {
+        vec2 px = vec2(0.25);
+        vec3 col = vec3(0.0);
+        col += colorAt(gl_FragCoord.xy + px * vec2(-1.0, -1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2( 1.0, -1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2(-1.0,  1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2( 1.0,  1.0));
+        outColor = vec4(col * 0.25, 1.0);
+      }
+    `;
+
+    const perturbFS = `#version 300 es
+      precision highp float;
+      uniform vec2 u_resolution;
+      uniform vec2 u_delta;
+      uniform float u_scale, u_maxIter, u_orbitLen, u_hueShift, u_palette;
+      uniform sampler2D u_orbit;
+      out vec4 outColor;
+      ${palFn}
+      vec2 Zat(float n) {
+        return texture(u_orbit, vec2((n + 0.5) / u_orbitLen, 0.5)).rg;
+      }
+      float probe(vec2 dc) {
+        vec2 dz = vec2(0.0);
+        for (float n = 0.0; n < 2048.0; n++) {
+          if (n >= u_maxIter || n >= u_orbitLen) break;
+          vec2 Z = Zat(n);
+          vec2 z = Z + dz;
+          float mag2 = dot(z, z);
+          if (mag2 > 256.0) {
+            float log_zn = log(mag2) / 2.0;
+            float nu = log(log_zn / log(2.0)) / log(2.0);
+            return n + 1.0 - nu;
+          }
+          dz = vec2(
+            2.0 * (Z.x * dz.x - Z.y * dz.y) + (dz.x * dz.x - dz.y * dz.y) + dc.x,
+            2.0 * (Z.x * dz.y + Z.y * dz.x) + (2.0 * dz.x * dz.y) + dc.y
+          );
+        }
+        return -1.0;
+      }
+      vec3 colorAt(vec2 fc) {
+        vec2 uv = (fc - 0.5 * u_resolution) / u_resolution.y;
+        float s = probe(u_delta + uv * u_scale);
+        if (s < 0.0) return vec3(0.015, 0.018, 0.028);
+        // log coloring: estable cuando cambia el presupuesto de iters
+        float t = log(1.0 + s) * 0.22 + u_hueShift;
+        vec3 col = pow(max(pal(t, u_palette), 0.0), vec3(0.92));
+        return col + exp(-0.012 * s) * vec3(0.18, 0.22, 0.16);
+      }
+      void main() {
+        vec2 px = vec2(0.25);
+        vec3 col = vec3(0.0);
+        col += colorAt(gl_FragCoord.xy + px * vec2(-1.0, -1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2( 1.0, -1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2(-1.0,  1.0));
+        col += colorAt(gl_FragCoord.xy + px * vec2( 1.0,  1.0));
+        outColor = vec4(col * 0.25, 1.0);
+      }
+    `;
+
+    const classicProg = link(vert, classicFS);
+    const perturbProg = link(vert, perturbFS);
+
+    const vbo = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+    function useProg(prog) {
+      gl.useProgram(prog);
+      const loc = gl.getAttribLocation(prog, "a_pos");
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    }
+
+    const classicU = {
+      res: gl.getUniformLocation(classicProg, "u_resolution"),
+      center: gl.getUniformLocation(classicProg, "u_center"),
+      centerLo: gl.getUniformLocation(classicProg, "u_center_lo"),
+      scale: gl.getUniformLocation(classicProg, "u_scale"),
+      maxIter: gl.getUniformLocation(classicProg, "u_maxIter"),
+      hue: gl.getUniformLocation(classicProg, "u_hueShift"),
+      pal: gl.getUniformLocation(classicProg, "u_palette"),
+    };
+    const perturbU = {
+      res: gl.getUniformLocation(perturbProg, "u_resolution"),
+      delta: gl.getUniformLocation(perturbProg, "u_delta"),
+      scale: gl.getUniformLocation(perturbProg, "u_scale"),
+      maxIter: gl.getUniformLocation(perturbProg, "u_maxIter"),
+      orbitLen: gl.getUniformLocation(perturbProg, "u_orbitLen"),
+      hue: gl.getUniformLocation(perturbProg, "u_hueShift"),
+      pal: gl.getUniformLocation(perturbProg, "u_palette"),
+      orbit: gl.getUniformLocation(perturbProg, "u_orbit"),
+    };
+
+    const orbitTex = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, orbitTex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+    let orbitKey = "";
+    let orbitLen = 0;
+    let orbitReady = false;
+    let orbitBuilding = false;
+    let orbitBuildId = 0;
+
+    function invalidateOrbit() {
+      orbitBuildId++;
+      orbitKey = "";
+      orbitLen = 0;
+      orbitReady = false;
+      orbitBuilding = false;
+    }
+
+    /** Orbit HP en batches — no congela el video */
+    async function buildOrbitAsync(cReStr, cImStr) {
+      const buildId = ++orbitBuildId;
+      orbitBuilding = true;
+      orbitReady = false;
+      const cRe = bfFromString(cReStr);
+      const cIm = bfFromString(cImStr);
+      const data = new Float32Array(ORBIT_CAP * 2);
+      let zRe = 0n, zIm = 0n;
+      const bail = bfFromNumber(256);
+      let n = 0;
+
+      while (n < ORBIT_CAP) {
+        if (buildId !== orbitBuildId) return; // cancelado
+        const end = Math.min(ORBIT_CAP, n + ORBIT_BATCH);
+        for (; n < end; n++) {
+          const zr2 = bfMul(zRe, zRe);
+          const zi2 = bfMul(zIm, zIm);
+          if (bfAdd(zr2, zi2) > bail) break;
+          data[n * 2] = bfToFloat(zRe);
+          data[n * 2 + 1] = bfToFloat(zIm);
+          const cross = bfMul(bfMul(zRe, zIm), bfFromNumber(2));
+          zRe = bfAdd(bfSub(zr2, zi2), cRe);
+          zIm = bfAdd(cross, cIm);
+        }
+        if (n < end) break; // escaped
+        // ceder un frame para que el zoom no se pause
+        await new Promise((r) => requestAnimationFrame(r));
+      }
+
+      if (buildId !== orbitBuildId) return;
+      if (n < 1) { data[0] = 0; data[1] = 0; n = 1; }
+
+      gl.bindTexture(gl.TEXTURE_2D, orbitTex);
+      gl.texImage2D(
+        gl.TEXTURE_2D, 0, gl.RG32F,
+        n, 1, 0, gl.RG, gl.FLOAT,
+        data.subarray(0, n * 2)
+      );
+      orbitKey = cReStr + "|" + cImStr;
+      orbitLen = n;
+      orbitReady = true;
+      orbitBuilding = false;
+    }
+
+    function prefetchOrbit() {
+      const t = currentTarget();
+      const key = t.re + "|" + t.im;
+      if (orbitReady && orbitKey === key) return;
+      if (orbitBuilding && orbitKey === key) return;
+      if (orbitBuilding) return;
+      orbitKey = key; // marca destino en construcción
+      buildOrbitAsync(t.re, t.im);
+    }
+
+    /* ---- state ---- */
+    let targetKey = "seahorse";
+    let viewRe = bfFromNumber(-0.5);
+    let viewIm = bfFromNumber(0);
+    let scale = START_SCALE;
+    let playing = true;
+    let speed = 1;
+    let hueShift = 0;
+    let paletteId = 0;
+    let lastTime = performance.now();
+    let dpr = 1;
+    let fade = 0;
+    let looping = false;
+    let loopT = 0;
+
+    const zoomEl = document.getElementById("zoom");
+    const itersEl = document.getElementById("iters");
+    const centerEl = document.getElementById("center");
+    const destEl = document.getElementById("dest");
+    const modeEl = document.getElementById("mode");
+    const playBtn = document.getElementById("play");
+    const targetSel = document.getElementById("target");
+    const paletteSel = document.getElementById("palette");
+    const fadeEl = document.getElementById("fade");
+    const pulseEl = document.getElementById("pulse");
+
+    function currentTarget() { return TARGETS[targetKey]; }
+    function usePerturb() {
+      return scale < PERTURB_SCALE && orbitReady;
+    }
+
+    function maxIterationsForScale(s) {
+      // Solo para modo classic; en perturb usamos orbitLen fijo
+      const depth = Math.max(0, -Math.log10(Math.max(s, 1e-300)));
+      return Math.min(900, Math.floor(100 + depth * 40));
+    }
+
+    function formatZoom(s) {
+      const z = START_SCALE / s;
+      if (z < 1e3) return z.toFixed(1) + "×";
+      if (z < 1e6) return (z / 1e3).toFixed(1) + " mil×";
+      if (z < 1e9) return (z / 1e6).toFixed(1) + " M×";
+      if (z < 1e12) return (z / 1e9).toFixed(1) + " B×";
+      if (z < 1e15) return (z / 1e12).toFixed(1) + " T×";
+      return z.toExponential(2).replace("e+", "e") + "×";
+    }
+
+    function paintHud(maxIter) {
+      zoomEl.textContent = formatZoom(scale);
+      itersEl.textContent = String(maxIter);
+      centerEl.textContent =
+        bfToString(viewRe, 15).replace(/0+$/, "").replace(/\.$/, "") +
+        (bfToFloat(viewIm) >= 0 ? " + " : " − ") +
+        bfToString(viewIm < 0n ? -viewIm : viewIm, 15).replace(/0+$/, "").replace(/\.$/, "") + "i";
+      fadeEl.style.opacity = String(fade);
+    }
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.floor(window.innerWidth * dpr);
+      const h = Math.floor(window.innerHeight * dpr);
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+        gl.viewport(0, 0, w, h);
+      }
+    }
+
+    function drawClassic() {
+      const maxIter = maxIterationsForScale(scale);
+      const re = bfToDD(viewRe);
+      const im = bfToDD(viewIm);
+      useProg(classicProg);
+      gl.uniform2f(classicU.res, canvas.width, canvas.height);
+      gl.uniform2f(classicU.center, re.hi, im.hi);
+      gl.uniform2f(classicU.centerLo, re.lo, im.lo);
+      gl.uniform1f(classicU.scale, scale);
+      gl.uniform1f(classicU.maxIter, maxIter);
+      gl.uniform1f(classicU.hue, hueShift);
+      gl.uniform1f(classicU.pal, paletteId);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (orbitBuilding) modeEl.textContent = "preparando órbita…";
+      else modeEl.textContent = "WebGL";
+      paintHud(maxIter);
+    }
+
+    function drawPerturb() {
+      const t = currentTarget();
+      const dRe = bfToFloat(bfSub(viewRe, bfFromString(t.re)));
+      const dIm = bfToFloat(bfSub(viewIm, bfFromString(t.im)));
+      useProg(perturbProg);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, orbitTex);
+      gl.uniform1i(perturbU.orbit, 0);
+      gl.uniform2f(perturbU.res, canvas.width, canvas.height);
+      gl.uniform2f(perturbU.delta, dRe, dIm);
+      gl.uniform1f(perturbU.scale, scale);
+      // iters fijas = largo de órbita → sin saltos de look
+      gl.uniform1f(perturbU.maxIter, orbitLen);
+      gl.uniform1f(perturbU.orbitLen, orbitLen);
+      gl.uniform1f(perturbU.hue, hueShift);
+      gl.uniform1f(perturbU.pal, paletteId);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      modeEl.textContent = "GPU perturbation";
+      paintHud(orbitLen);
+    }
+
+    function draw() {
+      resize();
+      if (scale < PREFETCH_SCALE) prefetchOrbit();
+      if (usePerturb()) drawPerturb();
+      else drawClassic();
+    }
+
+    function beginSoftLoop() {
+      looping = true;
+      loopT = 0;
+    }
+
+    function screenToComplex(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const nx = (clientX - rect.left) / rect.height - (rect.width / rect.height) * 0.5;
+      const ny = 0.5 - (clientY - rect.top) / rect.height;
+      const re = bfAdd(viewRe, bfFromNumber(nx * scale));
+      const im = bfAdd(viewIm, bfFromNumber(ny * scale));
+      return { re, im, reStr: bfToString(re, 40), imStr: bfToString(im, 40), nx, ny };
+    }
+
+    function setCustomTarget(reStr, imStr, x, y) {
+      TARGETS.custom.re = reStr;
+      TARGETS.custom.im = imStr;
+      targetKey = "custom";
+      targetSel.value = "custom";
+      targetSel.querySelector('option[value="custom"]').hidden = false;
+      destEl.textContent = TARGETS.custom.label;
+      invalidateOrbit();
+      pulseEl.style.left = x + "px";
+      pulseEl.style.top = y + "px";
+      pulseEl.classList.remove("on");
+      void pulseEl.offsetWidth;
+      pulseEl.classList.add("on");
+      if (!playing) togglePlay(true);
+    }
+
+    function tick(now) {
+      const dt = Math.min(0.05, (now - lastTime) / 1000);
+      lastTime = now;
+
+      if (looping) {
+        loopT += dt;
+        if (loopT < 0.5) fade = loopT / 0.5;
+        else if (loopT < 0.7) {
+          fade = 1;
+          scale = START_SCALE;
+          viewRe = bfFromNumber(-0.5);
+          viewIm = bfFromNumber(0);
+          // conservar órbita del mismo destino → re-zoom sin hitch
+        } else if (loopT < 1.3) fade = 1 - (loopT - 0.7) / 0.6;
+        else { fade = 0; looping = false; }
+      } else if (playing) {
+        const t = currentTarget();
+        const tRe = bfFromString(t.re);
+        const tIm = bfFromString(t.im);
+        const follow = 1 - Math.exp(-2.4 * dt * speed);
+        const f = bfFromNumber(follow);
+        viewRe = bfAdd(viewRe, bfMul(bfSub(tRe, viewRe), f));
+        viewIm = bfAdd(viewIm, bfMul(bfSub(tIm, viewIm), f));
+        const depth = Math.max(0, -Math.log10(Math.max(scale, 1e-300)));
+        let zoomRate = 0.42 * (1 - 0.3 * Math.min(1, depth / 35));
+        if (orbitBuilding) zoomRate *= 0.55; // no adelantarse antes de tener órbita
+        scale *= Math.exp(-zoomRate * dt * speed);
+        if (scale < MIN_SCALE) beginSoftLoop();
+        // color drift lento — evita que “cambie de figura” por paleta loca
+        hueShift += dt * 0.035 * speed;
+      } else {
+        hueShift += dt * 0.008;
+      }
+
+      draw();
+      requestAnimationFrame(tick);
+    }
+
+    let pointerDown = false, dragging = false;
+    let lastX = 0, lastY = 0, downX = 0, downY = 0;
+
+    canvas.addEventListener("pointerdown", (e) => {
+      pointerDown = true; dragging = false;
+      lastX = downX = e.clientX; lastY = downY = e.clientY;
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", (e) => {
+      if (!pointerDown) return;
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (!dragging && Math.hypot(e.clientX - downX, e.clientY - downY) > 5) {
+        dragging = true;
+        canvas.classList.add("dragging");
+        if (playing) togglePlay(false);
+      }
+      if (!dragging) return;
+      lastX = e.clientX; lastY = e.clientY;
+      const rect = canvas.getBoundingClientRect();
+      viewRe = bfSub(viewRe, bfFromNumber((dx / rect.height) * scale));
+      viewIm = bfAdd(viewIm, bfFromNumber((dy / rect.height) * scale));
+    });
+    function endPointer(e) {
+      if (!pointerDown) return;
+      const wasDrag = dragging;
+      pointerDown = false; dragging = false;
+      canvas.classList.remove("dragging");
+      if (!wasDrag && e.type === "pointerup") {
+        const p = screenToComplex(e.clientX, e.clientY);
+        setCustomTarget(p.reStr, p.imStr, e.clientX, e.clientY);
+      }
+    }
+    canvas.addEventListener("pointerup", endPointer);
+    canvas.addEventListener("pointercancel", endPointer);
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const factor = Math.exp(e.deltaY * 0.0012);
+      const p = screenToComplex(e.clientX, e.clientY);
+      const newScale = Math.min(4, Math.max(MIN_SCALE, scale * factor));
+      viewRe = bfSub(bfFromString(p.reStr), bfFromNumber(p.nx * newScale));
+      viewIm = bfSub(bfFromString(p.imStr), bfFromNumber(p.ny * newScale));
+      scale = newScale;
+      if (playing) togglePlay(false);
+    }, { passive: false });
+
+    function togglePlay(force) {
+      playing = typeof force === "boolean" ? force : !playing;
+      playBtn.textContent = playing ? "Pausa" : "Play";
+      playBtn.classList.toggle("active", playing);
+    }
+    playBtn.addEventListener("click", () => togglePlay());
+    document.getElementById("reset").addEventListener("click", () => {
+      looping = false; fade = 0;
+      scale = START_SCALE;
+      viewRe = bfFromNumber(-0.5); viewIm = bfFromNumber(0);
+      hueShift = 0; invalidateOrbit();
+      if (targetKey === "custom") {
+        targetKey = "seahorse"; targetSel.value = "seahorse";
+        targetSel.querySelector('option[value="custom"]').hidden = true;
+        destEl.textContent = TARGETS.seahorse.label;
+      }
+      togglePlay(true);
+    });
+    document.getElementById("faster").addEventListener("click", () => { speed = Math.min(4, speed * 1.35); });
+    document.getElementById("slower").addEventListener("click", () => { speed = Math.max(0.2, speed / 1.35); });
+    targetSel.addEventListener("change", () => {
+      targetKey = targetSel.value;
+      destEl.textContent = currentTarget().label;
+      looping = false; fade = 0; scale = START_SCALE;
+      viewRe = bfFromNumber(-0.5); viewIm = bfFromNumber(0);
+      invalidateOrbit();
+      togglePlay(true);
+    });
+    paletteSel.addEventListener("change", () => { paletteId = Number(paletteSel.value); });
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space") { e.preventDefault(); togglePlay(); }
+      else if (e.code === "KeyH") document.body.classList.toggle("ui-hidden");
+      else if (e.code === "KeyF") {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+
+    destEl.textContent = currentTarget().label;
+    // precargar órbita del destino inicial en idle
+    setTimeout(() => prefetchOrbit(), 400);
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
